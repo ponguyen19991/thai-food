@@ -1,0 +1,119 @@
+@import '/src/styles/mixins/responsive.scss';
+header {
+    .nav {
+        ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            align-items: center;
+            padding: 40px;
+            margin: 0;
+      
+            li {
+                display: inline-block;
+                margin-right: 10px;
+        
+                a {
+                color: rgb(176,176,176);
+                text-decoration: none;
+                transition: 0.2s;
+                
+                    &:hover {
+                        color: white;
+                    }
+                }
+    
+                @include desktop {
+                    &:nth-child(4) {
+                        display: none;
+                    }
+                }
+            }
+    
+            @include desktop {
+                display: block;
+                display: grid;
+                gap: 37px;
+                padding: 4rem;
+                font-size: 20px;
+            }
+        }
+    
+        @include desktop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            gap: 1.5rem;
+            background-color: black;
+            transition: 1s;
+            transform: translateY(-100vh);
+        }
+    }
+
+    .responsive-site {
+
+        .site-title-responsive {
+            display: none;
+            text-decoration: none;
+            color: white;
+            margin: 0 auto;
+
+            @include desktop {
+                display: block;    
+            }
+        }
+
+        @include desktop {
+            width: 100%;
+            display: flex;
+            padding: 15px;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    
+    .nav-btn {
+        padding: 5px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: aliceblue;
+        display: none;
+    
+        @include desktop {
+            display: block;
+            float: right;
+            padding: 15px;
+        }
+    }
+    
+    .responsive_nav {
+        transform: none;
+    }
+}
+
+.active {
+    position: relative;
+    color: white !important;
+    font-weight: bold;
+    transition: 0.2s;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: 0;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+        width: 50px;
+        height: 50px;
+        background-image: url('../../../public/images/dotFlame.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+}
