@@ -48,7 +48,8 @@ header {
             gap: 1.5rem;
             background-color: black;
             transition: 1s;
-            transform: translateY(-100vh);
+            transform: translateY(-250vh);
+            z-index: 1;
         }
     }
 
@@ -66,11 +67,13 @@ header {
         }
 
         @include desktop {
+            position: relative;
             width: 100%;
             display: flex;
             padding: 15px;
             justify-content: space-between;
             align-items: center;
+            padding-bottom: 30px;
         }
     }
     
@@ -84,9 +87,13 @@ header {
         display: none;
     
         @include desktop {
+            position: absolute;
+            right: 0;
+            top: 15px;
             display: block;
             float: right;
             padding: 15px;
+            // z-index: 1;
         }
     }
     
@@ -115,5 +122,8 @@ header {
         background-size: cover;
         background-repeat: no-repeat;
 
+        @include desktop {
+            display: none;
+        }
     }
 }
