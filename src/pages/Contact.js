@@ -1,4 +1,5 @@
+import '../styles/scss/contact.scss'
 
 export default function Contact() {
-    return <h1>Contact Us</h1>
+    return <strong>COMING SOON!!</strong>
 }

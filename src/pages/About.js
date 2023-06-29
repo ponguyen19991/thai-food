@@ -1,4 +1,5 @@
+import '../styles/scss/about.scss'
 
 export default function About() {
-    return <h1>About Us</h1>
+    return <strong>COMING SOON!!</strong>
 }

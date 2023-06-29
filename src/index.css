@@ -179,6 +179,16 @@ img {
   
 }
 
+@media (max-width: 1380px) {
+  body {
+    height: 170vh;
+  }
+
+  .carousel-images {
+    overflow: hidden;
+  }
+}
+
 @media (max-width: 1180px) {
   .carousel-image {
     width: 150px;

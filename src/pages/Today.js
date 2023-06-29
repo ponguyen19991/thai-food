@@ -1,4 +1,4 @@
-
+import '../styles/scss/today.scss'
 export default function Today() {
-    return <h1>Todaysss</h1>
+    return <strong>COMING SOON!!</strong>
 }

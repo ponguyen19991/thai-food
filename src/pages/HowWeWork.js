@@ -1,4 +1,5 @@
+import '../styles/scss/how-we-work.scss'
 
 export default function HowWeWork() {
-    return <h1>How</h1>
+    return <strong>COMING SOON!!</strong>
 }
