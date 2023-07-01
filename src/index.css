@@ -80,6 +80,39 @@ img {
   transform: scale(1.4) translateY(50px) translateX(14px);
   transition: all 0.4s ease;
   animation: jumpCenter 0.4s ease;
+  /* background-image: url('../public/images/shadow-bottom.png'); */
+}
+
+.container-img:nth-child(3):after {
+  content: "";
+  position: absolute;
+  bottom: -200px;
+  right: 0;
+  left: 47px;
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+  height: 130px;
+  background-image: url('../public/images/shadow-bottom.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.container-img:nth-child(2):after,
+.container-img:nth-child(4):after {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  right: 0;
+  left: 47px;
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+  height: 130px;
+  background-image: url('../public/images/shadow-bottom.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.6;
 }
 
 .container-img {
