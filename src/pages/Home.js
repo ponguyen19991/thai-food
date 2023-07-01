@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import '../styles/scss/home.scss'
 import { AiFillPlusSquare } from "react-icons/ai"
 import { FaShoppingBasket } from "react-icons/fa"
 import { shiftArray, unshiftArray, getImageClassName } from '../utils/carouselUtils';
+import { ToastContainer, toast } from 'react-toastify';
 import CarouselButtons from "../components/Button-Carousel/Button.jsx"
+import 'react-toastify/dist/ReactToastify.css';
+import '../styles/scss/home.scss'
 
 // import images1 from '../dummy-data';
 
@@ -57,6 +59,8 @@ export default function Home() {
 
   const [images, setImages] = useState(images1);
   const currentImage = images[activeIndex];
+
+  const notify = () => toast("Thank you for your interest in my website. Currently, this feature is being developed and will be available soon.");
 
   function shiftArray(arr) {
     const te = [...arr];
@@ -152,8 +156,16 @@ export default function Home() {
           <a href="#">Reviewed this <AiFillPlusSquare/></a>
       </div>
 
-        <div className="order-food">
+        <div className="order-food" onClick={notify}>
           <a href="#"><FaShoppingBasket /> ORDER NOW</a>
+          <ToastContainer
+            newestOnTop={false}
+            rtl={false}
+            autoClose={2000}
+            draggable
+            closeOnClick={true}
+            pauseOnHover
+          />
         </div>
     </div>
   );

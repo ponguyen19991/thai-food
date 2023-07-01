@@ -118,4 +118,20 @@
             margin-right: 10px;
         }
     }
+
+}
+
+.Toastify__toast-theme--light {
+    background: #E55451 !important;
+    color: white !important;
+    font-weight: 600 !important;
+  }
+
+
+.Toastify__progress-bar-theme--light {
+    background-image: linear-gradient(to right, #FF5722, #FF1744) !important;
+}
+
+.Toastify__close-button--light {
+    color: white !important;
 }
