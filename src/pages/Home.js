@@ -3,6 +3,7 @@ import { AiFillPlusSquare } from "react-icons/ai"
 import { FaShoppingBasket } from "react-icons/fa"
 import { shiftArray, unshiftArray, getImageClassName } from '../utils/carouselUtils';
 import { ToastContainer, toast } from 'react-toastify';
+import languageData from '../languages.js';
 import CarouselButtons from "../components/Button-Carousel/Button.jsx"
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/scss/home.scss'
@@ -10,18 +11,29 @@ import '../styles/scss/home.scss'
 // import images1 from '../dummy-data';
 
 export default function Home() {
+  const [language, setLanguage] = useState('english');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [tranSlate, setTranslate] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   
+  // const languageData = {
+  //   english: {
+  //     description: 'Welcome',
+  //   },
+  //   vietnamese: {
+  //     description: 'ยินดีต้อนรับ',
+  //   },
+  // };
+
+
   const images1 = [
     { 
       id: 0,
       title: 'ผัดไทย',
       subtitle: "Pad Thai",
-      description: "Made by shrimp, tofu, eggs and rice noodles",
-      descriptionFood: "It is often garnished with crushed peanuts and served with lime wedges and fresh herbs. The specific chef or cook who prepares Pad Thai can vary depending on the restaurant or household where it is being made.",
-      src: "/images/Thai Papaya Salad.png"
+      description: languageData,
+      descriptionFood: languageData,
+      src: "/images/Thai Papaya Salad.png",
     },
     {
       id: 1,
@@ -55,6 +67,13 @@ export default function Home() {
       descriptionFood: "The specific individual or establishment that makes sour sausage can vary, as it is a popular homemade dish in Thailand and Laos. Commercially produced sour sausage may also be available from specialty food manufacturers.",
       src: "/images/THAI FRIED RICE.png",
     },
+  ];
+
+
+  const options = [
+    { value: 'english', label: 'English', imgSrc: '/images/flag-languages/united-kingdom.png' },
+    { value: 'thai', label: 'ThaiLan', imgSrc: '/images/flag-languages/thailand.png' },
+    { value: 'viotnamese', label: 'Vietnamese', imgSrc: '/images/flag-languages/thailand.png' },
   ];
 
   const [images, setImages] = useState(images1);
@@ -104,13 +123,22 @@ export default function Home() {
     setActiveIndex(index); // Cập nhật giá trị activeIndex khi người dùng nhấp vào một hình ảnh
   };
 
+    const handleChange = (event) => {
+      const selectedValue = event.target.value;
+      // Handle the language change here
+    };
+
+    const handleLanguageChange = (event) => {
+      setLanguage(event.target.value);
+    };
+
   return (
     <div className="carousel">
       {currentImage && ( // Kiểm tra nếu currentImage tồn tại
         <div className="image-title content">
           <h1>{currentImage.title}</h1>
           <h3>{currentImage.subtitle}</h3>
-          <p>{currentImage.description}</p>
+          <p>{currentImage.description[language]?.description || 'No description available'}</p>
         </div>
       )}
 
@@ -140,7 +168,7 @@ export default function Home() {
       <div className="description-food">
         {currentImage && (
           <span>
-            {currentImage.descriptionFood}
+              {currentImage.descriptionFood[language]?.descriptionFood || 'No description available'}
           </span>
         )}
       </div>
@@ -156,8 +184,8 @@ export default function Home() {
           <a href="#">Reviewed this <AiFillPlusSquare/></a>
       </div>
 
-        <div className="order-food" onClick={notify}>
-          <a href="#"><FaShoppingBasket /> ORDER NOW</a>
+        <div className="order-food">
+          <a href="#" onClick={notify}><FaShoppingBasket /> ORDER NOW</a>
           <ToastContainer
             newestOnTop={false}
             rtl={false}
@@ -166,6 +194,19 @@ export default function Home() {
             closeOnClick={true}
             pauseOnHover
           />
+        </div>
+
+        <div id="language-select" className="languages" value={language} onChange={handleLanguageChange}>
+          <select onChange={handleChange}>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                <span className="option-content">
+                  <img src={option.imgSrc} alt={option.label} width={20} height={20} />
+                  {option.label}
+                </span>
+              </option>
+            ))}
+          </select>
         </div>
     </div>
   );

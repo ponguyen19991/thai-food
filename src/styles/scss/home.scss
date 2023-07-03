@@ -29,6 +29,7 @@
     & p {
         color: rgb(120, 120, 120);
     }
+    
 }
 
 .description-food {
@@ -89,6 +90,7 @@
             margin-left: 10px;
         }
     }
+    
 }
 
 
@@ -118,8 +120,26 @@
             margin-right: 10px;
         }
     }
-
 }
+
+.languages {
+
+    & select {
+        position: fixed;
+        bottom: 0;
+        right: 50px;
+        background: rgba(202, 39, 36, 0.8);
+        color: white;
+        border: none;
+        font-size: 15px;
+        width: 75px;
+        height: 30px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        outline: none;
+    }
+}
+
 
 .Toastify__toast-theme--light {
     background: #E55451 !important;
