@@ -177,7 +177,7 @@ export default function Home() {
           <span>
             100+
           </span>
-          <a href="#">{t('review')} <AiFillPlusSquare/></a>
+          <a href="#" onClick={notify}>{t('review')} <AiFillPlusSquare/></a>
       </div>
 
         <div className="order-food">
