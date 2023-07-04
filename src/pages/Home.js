@@ -4,6 +4,8 @@ import { FaShoppingBasket } from "react-icons/fa"
 import { shiftArray, unshiftArray, getImageClassName } from '../utils/carouselUtils';
 import { ToastContainer, toast } from 'react-toastify';
 import i18n from '../i18n';
+import LanguageSelect from '../components/LanguageSelect/LanguageSelect';
+import ScrollPrompt from '../components/ScrollPrompt/ScrollPrompt';
 import CarouselButtons from "../components/Button-Carousel/Button.jsx"
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/scss/home.scss'
@@ -193,13 +195,9 @@ export default function Home() {
         </div>
 
 
-        <div className='languages'>
-          <select value={selectedLanguage} onChange={changeLanguage}>
-            <option value="th">Thai</option>
-            <option value="en">English</option>
-            <option value='vn'>Vietnamese</option>
-          </select>
-        </div>
+        <ScrollPrompt/>
+        
+        <LanguageSelect selectedLanguage={selectedLanguage} changeLanguage={changeLanguage} />
 
     </div>
   );
