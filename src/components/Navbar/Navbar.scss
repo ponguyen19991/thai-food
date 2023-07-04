@@ -14,9 +14,24 @@ header {
                 margin-right: 10px;
         
                 a {
+                position: relative;
                 color: rgb(176,176,176);
                 text-decoration: none;
                 transition: 0.2s;
+
+                    & h3 {
+                        // position: absolute;
+                        // right: 0;
+                        // left: 0;
+                        // top: -30px;
+                        // bottom: 0;
+                        margin: 0 auto;
+                        text-align: center;
+                        width: 100%;
+                        font-size: 22px;
+                        color: #5a5a5a;
+                        width: 120px;
+                    }
                 
                     &:hover {
                         color: white;

@@ -1,85 +1,90 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiFillPlusSquare } from "react-icons/ai"
 import { FaShoppingBasket } from "react-icons/fa"
 import { shiftArray, unshiftArray, getImageClassName } from '../utils/carouselUtils';
 import { ToastContainer, toast } from 'react-toastify';
-import languageData from '../languages.js';
+import i18n from '../i18n';
 import CarouselButtons from "../components/Button-Carousel/Button.jsx"
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/scss/home.scss'
 
+import { useTranslation } from 'react-i18next';
+
 // import images1 from '../dummy-data';
 
 export default function Home() {
-  const [language, setLanguage] = useState('english');
+  const [selectedLanguage, setSelectedLanguage] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [tranSlate, setTranslate] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
-  
-  // const languageData = {
-  //   english: {
-  //     description: 'Welcome',
-  //   },
-  //   vietnamese: {
-  //     description: 'ยินดีต้อนรับ',
-  //   },
-  // };
 
+  const { t, i18n } = useTranslation();
 
   const images1 = [
     { 
       id: 0,
       title: 'ผัดไทย',
       subtitle: "Pad Thai",
-      description: languageData,
-      descriptionFood: languageData,
+      description: 'description-pad-thai',
+      descriptionFood: 'main-description-pad-thai',
       src: "/images/Thai Papaya Salad.png",
     },
     {
       id: 1,
       title: 'ต้มยำ',
       subtitle: "Tom Yum",
-      description: "Made by chili peppers, mushrooms, shrimp or chicken,...",
-      descriptionFood: "Tom Yum can be made by individuals at home using fresh ingredients and traditional Thai seasonings. It is also commonly served in Thai restaurants and can be found in various regions of Thailand. The soup is known for its tangy, aromatic, and spicy taste, which is a signature characteristic of Thai cuisine.",
+      description: 'description-tom-yum',
+      descriptionFood: "main-description-tom-yum",
       src: "/images/Sour Sausage Thai.png",
     },
     {
       id: 2,
       title: 'ข้าวผัด',
       subtitle: "Thai Fried Rice",
-      description: "Made by stir-frying cooked rice with various ingredients",
-      descriptionFood: "Thai Fried Rice can be made by both home cooks and professional chefs. It is a versatile dish that can be customized with different ingredients and spice levels according to personal preferences. It is widely available in Thai restaurants worldwide and is a popular choice for both locals and visitors.",
+      description: "description-thai-rice",
+      descriptionFood: "main-description-thai-rice",
       src: "/images/padThai.png",
     },
     {
       id: 3,
       title: 'ยำส้มโอ',
       subtitle: "Thai Papaya Salad",
-      description: "Made by green papaya, tomatoes, fish sauce,...",
-      descriptionFood: "The ingredients are mixed together in a mortar and pestle, which helps to release the flavors and textures of the ingredients. Som Tam can be made by individuals at home, as well as by street food vendors, restaurants, and food establishments in Thailand. It is a refreshing and flavorful salad that is enjoyed by many people.",
+      description: "description-papaya-salad",
+      descriptionFood: "main-description-papaya-salad",
       src: "/images/TomYum.png",
     },
     {
       id: 4,
       title: 'ไส้อั่ว',
       subtitle: "Sour Sausage",
-      description: "Made by pork or beef with cooked rice",
-      descriptionFood: "The specific individual or establishment that makes sour sausage can vary, as it is a popular homemade dish in Thailand and Laos. Commercially produced sour sausage may also be available from specialty food manufacturers.",
+      description: "description-sour-sausage",
+      descriptionFood: "main-description-sour-sausage",
       src: "/images/THAI FRIED RICE.png",
     },
   ];
 
-
-  const options = [
-    { value: 'english', label: 'English', imgSrc: '/images/flag-languages/united-kingdom.png' },
-    { value: 'thai', label: 'ThaiLan', imgSrc: '/images/flag-languages/thailand.png' },
-    { value: 'viotnamese', label: 'Vietnamese', imgSrc: '/images/flag-languages/thailand.png' },
-  ];
-
   const [images, setImages] = useState(images1);
+  
   const currentImage = images[activeIndex];
+  
 
-  const notify = () => toast("Thank you for your interest in my website. Currently, this feature is being developed and will be available soon.");
+  const notify = () => toast(t("notification-coming-soon"));
+
+  useEffect(() => {
+    // Lấy giá trị đã lưu trong localStorage nếu có
+    const storedLanguage = localStorage.getItem('selectedLanguage');
+    if (storedLanguage) {
+      setSelectedLanguage(storedLanguage);
+      i18n.changeLanguage(storedLanguage);
+    }
+  }, []);
+
+  const changeLanguage = (event) => {
+    const selectedLanguage = event.target.value;
+    setSelectedLanguage(selectedLanguage);
+    i18n.changeLanguage(selectedLanguage);
+    localStorage.setItem('selectedLanguage', selectedLanguage); // Lưu giá trị vào localStorage
+  }
 
   function shiftArray(arr) {
     const te = [...arr];
@@ -123,22 +128,13 @@ export default function Home() {
     setActiveIndex(index); // Cập nhật giá trị activeIndex khi người dùng nhấp vào một hình ảnh
   };
 
-    const handleChange = (event) => {
-      const selectedValue = event.target.value;
-      // Handle the language change here
-    };
-
-    const handleLanguageChange = (event) => {
-      setLanguage(event.target.value);
-    };
-
   return (
     <div className="carousel">
       {currentImage && ( // Kiểm tra nếu currentImage tồn tại
         <div className="image-title content">
           <h1>{currentImage.title}</h1>
           <h3>{currentImage.subtitle}</h3>
-          <p>{currentImage.description[language]?.description || 'No description available'}</p>
+          <p>{t(currentImage.description)}</p>
         </div>
       )}
 
@@ -168,7 +164,7 @@ export default function Home() {
       <div className="description-food">
         {currentImage && (
           <span>
-              {currentImage.descriptionFood[language]?.descriptionFood || 'No description available'}
+              {t(currentImage.descriptionFood)}
           </span>
         )}
       </div>
@@ -181,11 +177,11 @@ export default function Home() {
           <span>
             100+
           </span>
-          <a href="#">Reviewed this <AiFillPlusSquare/></a>
+          <a href="#">{t('review')} <AiFillPlusSquare/></a>
       </div>
 
         <div className="order-food">
-          <a href="#" onClick={notify}><FaShoppingBasket /> ORDER NOW</a>
+          <a href="#" onClick={notify}><FaShoppingBasket /> {t('order-now')}</a>
           <ToastContainer
             newestOnTop={false}
             rtl={false}
@@ -196,18 +192,15 @@ export default function Home() {
           />
         </div>
 
-        <div id="language-select" className="languages" value={language} onChange={handleLanguageChange}>
-          <select onChange={handleChange}>
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                <span className="option-content">
-                  <img src={option.imgSrc} alt={option.label} width={20} height={20} />
-                  {option.label}
-                </span>
-              </option>
-            ))}
+
+        <div className='languages'>
+          <select value={selectedLanguage} onChange={changeLanguage}>
+            <option value="th">Thai</option>
+            <option value="en">English</option>
+            <option value='vn'>Vietnamese</option>
           </select>
         </div>
+
     </div>
   );
 }
