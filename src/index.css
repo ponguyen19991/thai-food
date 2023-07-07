@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,200;0,300;1,100;1,200&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,300;0,400;1,300&display=swap');
 
 
 * {
@@ -10,11 +10,11 @@
 }
 
 body {
-    font-family: 'Sarabun', sans-serif;
+  font-family: 'Noto Sans Display', sans-serif;
     background-color: black;
     background-image: url('../public/images/black-smooth-textured-paper.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center;
     height: 100vh;
 }

@@ -195,7 +195,6 @@ export default function Home() {
         </div>
 
 
-        <ScrollPrompt/>
         
         <LanguageSelect selectedLanguage={selectedLanguage} changeLanguage={changeLanguage} />
 

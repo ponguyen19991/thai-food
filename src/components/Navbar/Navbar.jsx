@@ -32,6 +32,17 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
+              to="/menu"
+              activeClassName="active"
+              className="menu"
+              onClick={showNavbar}
+            >
+            <h3>เมนู</h3>
+              {t("menu")}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/restaurants"
               activeClassName="active"
               className="restaurants"
@@ -39,17 +50,6 @@ const Navbar = () => {
             >
                 <h3>ร้านอาหาร</h3>
                 {t("restaurants")}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/today"
-              activeClassName="active"
-              className="offers"
-              onClick={showNavbar}
-            >
-                <h3>ข้อเสนอวันนี้</h3>
-              {t("today-offer")}
             </NavLink>
           </li>
           <li>
@@ -61,6 +61,17 @@ const Navbar = () => {
                 height={120}
               />
             </Link>
+          </li>
+          <li>
+            <NavLink
+              to="/today"
+              activeClassName="active"
+              className="offers"
+              onClick={showNavbar}
+            >
+                <h3>ข้อเสนอวันนี้</h3>
+              {t("today-offer")}
+            </NavLink>
           </li>
           <li>
             <NavLink
@@ -82,17 +93,6 @@ const Navbar = () => {
             >
                 <h3>เกี่ยวกับเรา</h3>
               {t("about-us")}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/how-we-work"
-              activeClassName="active"
-              className="how-we-work"
-              onClick={showNavbar}
-            >
-                <h3>วิธีการทำงาน</h3>
-              {t("how-we-work")}
             </NavLink>
           </li>
         </ul>
