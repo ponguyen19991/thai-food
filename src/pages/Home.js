@@ -130,6 +130,12 @@ export default function Home() {
     setActiveIndex(index); // Cập nhật giá trị activeIndex khi người dùng nhấp vào một hình ảnh
   };
 
+  const handleLinkClick = (e) => {
+    e.preventDefault();
+    // Chuyển hướng đến trang /menu
+    window.location.href = '/menu';
+  };
+
   return (
     <div className="carousel">
       {currentImage && ( // Kiểm tra nếu currentImage tồn tại
@@ -183,15 +189,15 @@ export default function Home() {
       </div>
 
         <div className="order-food">
-          <a href="#" onClick={notify}><FaShoppingBasket /> {t('order-now')}</a>
-          <ToastContainer
+          <a href="#" onClick={handleLinkClick}><FaShoppingBasket /> {t('order-now')}</a>
+          {/* <ToastContainer
             newestOnTop={false}
             rtl={false}
             autoClose={2000}
             draggable
             closeOnClick={true}
             pauseOnHover
-          />
+          /> */}
         </div>
 
 
