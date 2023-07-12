@@ -54,6 +54,9 @@ const ModalMenuFood = ({isModalOpen, closeModal, t, selectedBox }) => {
                 <Grid item xs={12} sm={6}>
                     <Box sx={{
                         padding: '90px 0px',
+                        '@media (max-width: 1380px)': {
+                            padding: '30px 0px'
+                        },
                         '@media (max-width: 768px)': {
                             padding: '0',
                             lineHeight: '1.6'
@@ -69,6 +72,9 @@ const ModalMenuFood = ({isModalOpen, closeModal, t, selectedBox }) => {
                                 height: '80px', 
                                 display: 'flex', 
                                 alignItems: 'center' ,
+                                '@media (max-width: 1380px)': {
+                                    height: '100px'
+                                },
                                 '@media (max-width: 768px)': {
                                     fontSize: '15px'
                                 },
@@ -103,6 +109,9 @@ const ModalMenuFood = ({isModalOpen, closeModal, t, selectedBox }) => {
                                 height: '80px', 
                                 display: 'flex', 
                                 alignItems: 'center' ,
+                                '@media (max-width: 1380px)': {
+                                    height: '100px'
+                                },
                                 '@media (max-width: 768px)': {
                                     fontSize: '15px'
                                 },
