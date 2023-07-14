@@ -215,7 +215,7 @@ img {
 
 @media (max-width: 1380px) {
   body {
-    height: 170vh;
+    height: 100vh;
   }
 
   .carousel-images {
@@ -251,8 +251,11 @@ img {
     width: 130px;
     height: 100px;
   }
-
+  .scroll-prompt {
+    display: none;
+  }
+  
   body {
-    height: 170vh;
+    height: 130vh;
   }
 }

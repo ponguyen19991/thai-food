@@ -1,7 +1,125 @@
-strong {
-    display: block;
-    width: 100%;
-    font-size: 30px;
-    text-align: center;
-    color: white;  
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,300;0,400;1,300&family=Satisfy&display=swap');
+@import '/src/styles/mixins/responsive.scss';
+
+.bg-about-us {
+    font-family: 'Noto Sans Display', sans-serif;
+    background-color: black;
+    background-image: url('../../../public/images/background-about-us.png');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    height: 100vh;
+
+    .child-bg {
+        position: relative;
+        height: 98%;
+        width: 98%;
+        margin: auto;
+        border: 6px solid #cf3835;
+        box-sizing: border-box;
+        transform: translateY(10px);
+
+        .child-content {
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: translate(0px, 100%);
+            width: 400px;
+            height: auto;
+            color: white;
+            // text-align: justify;
+
+                @include mobile {
+                    transform: translate(0px, 70%);
+                    width: 285px;
+                }
+
+                @include overDesktop {
+                    width: 535px;
+                }
+
+                @include overDesktop2 {
+                    width: 870px;
+                }
+
+            h2 {
+                font-family: 'Satisfy', cursive;
+                color: #cf3835;
+
+                @include mobile {
+                    font-size: 2.5rem;
+                }
+
+                @include overDesktop {
+                    font-size: 5rem;
+                }
+
+                @include overDesktop2 {
+                    font-size: 8rem;
+                }
+            }
+
+            h5 {
+                color: #EB5406;
+                line-height: 1.8;
+
+                @include overDesktop2 {
+                    font-size: 3.5rem;
+                }
+            }
+
+            p {
+                @include overDesktop2 {
+                    font-size: 1.5rem;
+                }
+            }
+
+            button {
+                color: white;
+                border: 1px solid #cf3835;
+                width: 150px;
+                box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+                margin-top: 15px;
+                margin-right: 35px;
+                float: right;
+                background-color: #cf3835;
+                font-weight: 550;
+                transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        
+                &:hover {
+                    background-color: rgba(196, 27, 27, 0.9);
+                    box-shadow: 0 0 10px rgba(226, 226, 226, 0.2);
+                }
+
+                @include overDesktop2 {
+                    width: 200px;
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .child-social {
+            position: absolute;
+            right: 155px;
+            bottom: 0;
+            font-size: 24px;
+
+            @include mobile {
+                right: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+            }
+
+            a {
+                color: white;
+                margin-right: 10px;
+                transition: opacity 0.2s ease;
+
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+        }
+    }
 }

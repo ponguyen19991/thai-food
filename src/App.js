@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar"
 import Home from "./pages/Home"
@@ -10,6 +10,10 @@ import Menu from "./pages/Menu"
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "./components/LanguageSelect/LanguageSelect";
 import ScrollPrompt from "./components/ScrollPrompt/ScrollPrompt";
+
+// const Home = lazy(() =>
+//   new Promise((resolve) => setTimeout(() => resolve(import("./pages/Home")), 5000))
+// );
 
 function App() {
   const [selectedLanguage, setSelectedLanguage] = useState('');
