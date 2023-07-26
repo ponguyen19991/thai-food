@@ -1,6 +1,10 @@
-import { useState } from 'react';
-import { Card, CardMedia, Box, Container, Typography, Grid, CardContent, Modal, Button  } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Card, CardMedia, Box, Container, Typography, Grid, CardContent, Modal, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useSpring, animated } from '@react-spring/web'
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import LanguageSelect from '../components/LanguageSelect/LanguageSelect.jsx'
 import BoxMenuFood from '../components/BoxItem/BoxMenuFood.jsx';
 import ModalMenuFood from '../components/Modal/ModalMenuFood.jsx';
@@ -12,9 +16,13 @@ export default function Menu() {
     const { t, i18n } = useTranslation();
     const [selectedBox, setSelectedBox] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-        
+
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
     const dishes = [
-        { 
+        {
             id: 0,
             name: 'papaya-salad',
             description: 'description-menu-ps',
@@ -27,7 +35,7 @@ export default function Menu() {
                 someOneRate2: "Small Cat"
             }
         },
-        { 
+        {
             id: 1,
             name: 'pad-thai',
             description: 'description-menu-pd',
@@ -41,7 +49,7 @@ export default function Menu() {
                 someOneRate2: "Normal Cat"
             }
         },
-        { 
+        {
             id: 2,
             name: 'tom-yum',
             description: 'description-menu-ty',
@@ -55,7 +63,7 @@ export default function Menu() {
                 someOneRate2: "Normal Cat"
             }
         },
-        { 
+        {
             id: 3,
             name: 'green-curry',
             description: 'description-menu-gc',
@@ -69,7 +77,7 @@ export default function Menu() {
                 someOneRate2: "Normal Cat"
             }
         },
-        { 
+        {
             id: 4,
             name: 'massaman-curry',
             description: 'description-menu-mc',
@@ -83,7 +91,7 @@ export default function Menu() {
                 someOneRate2: "Normal Cat"
             }
         },
-        { 
+        {
             id: 5,
             name: 'mango-sticky-rice',
             description: 'description-menu-msr',
@@ -97,7 +105,7 @@ export default function Menu() {
                 someOneRate2: "Normal Cat"
             }
         },
-        { 
+        {
             id: 6,
             name: 'satay',
             description: 'description-menu-satay',
@@ -111,7 +119,7 @@ export default function Menu() {
                 someOneRate2: "Normal Cat"
             }
         },
-        { 
+        {
             id: 7,
             name: 'khao-pad',
             description: 'description-menu-kp',
@@ -125,7 +133,7 @@ export default function Menu() {
                 someOneRate2: "Normal Cat"
             }
         },
-        { 
+        {
             id: 8,
             name: 'pad-kra-pao',
             description: 'description-menu-pkp',
@@ -146,45 +154,62 @@ export default function Menu() {
         setSelectedBox(box);
         setIsModalOpen(true);
     };
-    
+
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    const menuContent = useSpring({
+        to: { opacity: 1 },
+        from: { opacity: 0 },
+        reset: false,
+        delay: 400,
+    })
+
+    const menuFood = useSpring({
+        to: { opacity: 1 },
+        from: { opacity: 0 },
+        reset: false,
+        delay: 600,
+    })
 
     return (
         <Box sx={{ position: 'relative' }}>
             <Card sx={{ display: 'flex', background: 'transparent', opacity: '0.5' }}>
                 <CardMedia
-                sx={{ marginLeft: '0', marginRight: '0' }}
-                component="img"
-                height="500"
-                image="/images/banner.jpg"
-                alt="Banner Image"
+                    sx={{ marginLeft: '0', marginRight: '0' }}
+                    component="img"
+                    height="500"
+                    image="/images/banner.jpg"
+                    alt="Banner Image"
                 />
             </Card>
-            <Container maxWidth="lg" sx={{ 
+            <Container maxWidth="lg" sx={{
                 position: 'absolute',
                 top: '190px',
                 left: '0',
                 right: '0'
-             }}>
-                <Typography variant="h2" sx={{ 
-                    color: '#ffffff', fontWeight: '500', textAlign: 'center' 
-                    }}>Thai Food Menu</Typography>
-                
-                <Box sx={{ flexGrow: 1 , marginTop: '100px'}}>
+            }}>
+                {/* <animated.div style={menuContent}> */}
+                <Typography data-aos="fade-down" data-aos-duration="1000" variant="h2" sx={{
+                    color: '#ffffff', fontWeight: '500', textAlign: 'center'
+                }}>Thai Food Menu</Typography>
+                {/* </animated.div> */}
+                {/* <animated.div style={menuFood}> */}
+                <Box sx={{ flexGrow: 1, marginTop: '100px' }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 2, md: 12 }}>
                         {dishes.map((dish) => (
-                            <Grid item xs={6} sm={4} md={4} key={dish.id}>
+                            <Grid data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" item xs={6} sm={4} md={4} key={dish.id}>
                                 <BoxMenuFood dish={dish} openModal={openModal} t={t} />
-                                <ModalMenuFood selectedBox={selectedBox} isModalOpen={isModalOpen} closeModal={closeModal} t={t}/>
+                                <ModalMenuFood selectedBox={selectedBox} isModalOpen={isModalOpen} closeModal={closeModal} t={t} />
                             </Grid>
                         ))}
                     </Grid>
                 </Box>
+                {/* </animated.div> */}
             </Container>
-            
-            <ContactInfoCard/>
+
+            <ContactInfoCard />
         </Box>
     )
 }

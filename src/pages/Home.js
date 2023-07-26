@@ -4,6 +4,7 @@ import { FaShoppingBasket } from "react-icons/fa"
 import { shiftArray, unshiftArray, getImageClassName } from '../utils/carouselUtils';
 import { ToastContainer, toast } from 'react-toastify';
 import i18n from '../i18n';
+import { useSpring, animated } from '@react-spring/web'
 import LanguageSelect from '../components/LanguageSelect/LanguageSelect';
 import ScrollPrompt from '../components/ScrollPrompt/ScrollPrompt';
 import CarouselButtons from "../components/Button-Carousel/Button.jsx"
@@ -23,7 +24,7 @@ export default function Home() {
   const { t, i18n } = useTranslation();
 
   const images1 = [
-    { 
+    {
       id: 0,
       title: 'ผัดไทย',
       subtitle: "Pad Thai",
@@ -66,11 +67,32 @@ export default function Home() {
   ];
 
   const [images, setImages] = useState(images1);
-  
+
   const currentImage = images[activeIndex];
-  
+
 
   const notify = () => toast(t("notification-coming-soon"));
+
+  const imagesFood = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    reset: false,
+    delay: 500,
+  })
+
+  const contentFood = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    reset: false,
+    delay: 400,
+  })
+
+  const viewed = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    reset: false,
+    delay: 700,
+  })
 
   useEffect(() => {
     // Lấy giá trị đã lưu trong localStorage nếu có
@@ -138,55 +160,56 @@ export default function Home() {
 
   return (
     <div className="carousel">
-      {currentImage && ( // Kiểm tra nếu currentImage tồn tại
-        <div className="image-title content">
-          <h1>{currentImage.title}</h1>
-          <h3>{currentImage.subtitle}</h3>
-          <p>{t(currentImage.description)}</p>
-        </div>
-      )}
-
-      <div className="carousel-images">
-        {images.map((image, index) => (
-          <div className="container-img" key={image.id}>
-            <img
-              width={200}
-              className={`carousel-image ${tranSlate} ${getImageClassName(index)}`}
-              src={image.src}
-              alt={`Image ${image.id}`}
-            />
-            
+      <animated.div style={contentFood}>
+        {currentImage && ( // Kiểm tra nếu currentImage tồn tại
+          <div className="image-title content">
+            <h1>{currentImage.title}</h1>
+            <h3>{currentImage.subtitle}</h3>
+            <p>{t(currentImage.description)}</p>
           </div>
-        ))}
-      </div>
-
-      {/* Các nút điều hướng */}
-      <CarouselButtons
-        goToPrevious={goToPrevious}
-        goToNext={goToNext}
-        images={images}
-        currentIndex={currentIndex}
-        handleImageClick={handleImageClick}
-      />
-
-      <div className="description-food">
-        {currentImage && (
-          <span>
-              {t(currentImage.descriptionFood)}
-          </span>
         )}
-      </div>
+      </animated.div>
+      <animated.div style={imagesFood}>
+        <div className="carousel-images">
+          {images.map((image, index) => (
+            <div className="container-img" key={image.id}>
+              <img
+                width={200}
+                className={`carousel-image ${tranSlate} ${getImageClassName(index)}`}
+                src={image.src}
+                alt={`Image ${image.id}`}
+              />
 
-      <div className="clients-rated">
-          <img src='/images/clients/meow1.jpg' alt='client 1' width={50} height={50}/>
-          <img src='/images/clients/meow2.jpg' alt='client 2' width={50} height={50}/>
-          <img src='/images/clients/meow3.jpg' alt='client 3' width={50} height={50}/>
-          <img src='/images/clients/meow4.jpg' alt='client 4' width={50} height={50}/>
+            </div>
+          ))}
+        </div>
+        {/* Các nút điều hướng */}
+        <CarouselButtons
+          goToPrevious={goToPrevious}
+          goToNext={goToNext}
+          images={images}
+          currentIndex={currentIndex}
+          handleImageClick={handleImageClick}
+        />
+        <div className="description-food">
+          {currentImage && (
+            <span>
+              {t(currentImage.descriptionFood)}
+            </span>
+          )}
+        </div>
+      </animated.div>
+      <animated.div style={viewed}>
+        <div className="clients-rated">
+          <img src='/images/clients/meow1.jpg' alt='client 1' width={50} height={50} />
+          <img src='/images/clients/meow2.jpg' alt='client 2' width={50} height={50} />
+          <img src='/images/clients/meow3.jpg' alt='client 3' width={50} height={50} />
+          <img src='/images/clients/meow4.jpg' alt='client 4' width={50} height={50} />
           <span>
             100+
           </span>
-          <a href="#" onClick={notify}>{t('review')} <AiFillPlusSquare/></a>
-      </div>
+          <a href="#" onClick={notify}>{t('review')} <AiFillPlusSquare /></a>
+        </div>
 
         <div className="order-food">
           <a href="#" onClick={handleLinkClick}><FaShoppingBasket /> {t('order-now')}</a>
@@ -199,10 +222,10 @@ export default function Home() {
             pauseOnHover
           /> */}
         </div>
+      </animated.div>
 
 
-        
-        <LanguageSelect selectedLanguage={selectedLanguage} changeLanguage={changeLanguage} />
+      <LanguageSelect selectedLanguage={selectedLanguage} changeLanguage={changeLanguage} />
 
     </div>
   );
