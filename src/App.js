@@ -16,18 +16,44 @@ import ScrollPrompt from "./components/ScrollPrompt/ScrollPrompt";
 // );
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const { t, i18n } = useTranslation();
 
 
   useEffect(() => {
-    // Lấy giá trị đã lưu trong localStorage nếu có
     const storedLanguage = localStorage.getItem('selectedLanguage');
     if (storedLanguage) {
       setSelectedLanguage(storedLanguage);
       i18n.changeLanguage(storedLanguage);
     }
   }, []);
+
+  useEffect(() => {
+    const delay = Math.random() * 3000 + 2000;
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div>
+        <div className="overlay"></div>
+        <div className="loading-container">
+          <span className="loading-circle"></span>
+          <span className="loading-circle"></span>
+          <span className="loading-circle"></span>
+          <span className="loading-circle"></span>
+          <span className="loading-circle"></span>
+        </div>
+      </div>
+    );
+  }
+
+
 
   const changeLanguage = (event) => {
     const selectedLanguage = event.target.value;
@@ -36,19 +62,19 @@ function App() {
     localStorage.setItem('selectedLanguage', selectedLanguage); // Lưu giá trị vào localStorage
   }
   return (
-      <React.Fragment>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/restaurants" element={<Restaurants />} />
-          <Route path="/today" element={<Today />} />
-          <Route path="/contact-us" element={<Contact />} />
-          <Route path="/about-us" element={<About />} />
-          <Route path="/menu" element={<Menu />} />
-        </Routes>
-        <ScrollPrompt/>
-        <LanguageSelect selectedLanguage={selectedLanguage} changeLanguage={changeLanguage} />
-      </React.Fragment>
+    <React.Fragment>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/restaurants" element={<Restaurants />} />
+        <Route path="/today" element={<Today />} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/about-us" element={<About />} />
+        <Route path="/menu" element={<Menu />} />
+      </Routes>
+      <ScrollPrompt />
+      <LanguageSelect selectedLanguage={selectedLanguage} changeLanguage={changeLanguage} />
+    </React.Fragment>
   );
 }
 
