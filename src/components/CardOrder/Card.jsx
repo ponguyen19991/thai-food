@@ -24,7 +24,7 @@ const ContactInfoCard = () => {
         marginTop: '310rem'
       },
       '@media (max-width: 375px)': {
-        marginTop: '290rem'
+        marginTop: '2ju90rem'
       }
       }}>
       <CardMedia

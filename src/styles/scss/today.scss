@@ -1,7 +1,145 @@
-strong {
-    display: block;
-    width: 100%;
-    font-size: 30px;
-    text-align: center;
-    color: white;  
+@import url('https://fonts.cdnfonts.com/css/edo-sz');
+@import '/src/styles/mixins/responsive.scss';
+
+ul {
+    padding-left: 45px;
+    font-size: 24px;
+}
+
+.main-today {
+    position: relative;
+
+    .highContent {
+        height: 55vh;
+
+        @include desktop {
+            height: 40vh;
+        }
+
+        .img-main {
+
+            img {
+                position: absolute;
+                left: 150px;
+                top: -130px;
+                z-index: -1;
+            }
+
+            .borderSale {
+                display: flex;
+                position: absolute;
+                top: -25px;
+                right: 130px;
+                width: 120px;
+                height: 120px;
+                border: 3px solid white;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                z-index: -2;
+
+                @include table {
+                    right: 8px;
+                }
+
+                @include desktop {
+                    right: 50px;
+                }
+
+                span {
+                    color: white;
+                    font-size: 22px;
+
+                    strong {
+                        font-size: 32px;
+                        color: #EA4D22;
+                    }
+                }
+            }
+        }
+    }
+
+
+    button {
+        float: right;
+        width: 165px;
+        border-radius: 20px;
+        background-color: #EA4D22;
+        color: white;
+        border: 1px solid #EA4D22;
+        font-weight: 600;
+
+        @include table {
+            display: block;
+            float: none;
+            margin: 0 auto;
+        }
+
+        @include desktop {
+            display: block;
+            float: none;
+            margin: 0 auto;
+        }
+    }
+}
+
+.content-today h4,
+.content-today span {
+    font-family: 'Edo SZ', sans-serif !important;
+}
+
+.content-today {
+
+    h4 {
+        font-size: 55px;
+        color: #EA4D22;
+    }
+
+    span {
+        font-size: 145px;
+        color: white;
+    }
+}
+
+.content-main {
+
+    h5 {
+        font-weight: 600;
+        color: #EA4D22;
+    }
+
+    small {
+        color: white;
+        width: 150px;
+        display: block;
+        padding: 10px 0px;
+    }
+
+    ul {
+        color: white;
+        list-style-type: none;
+        padding-left: 0;
+        line-height: 2.5rem;
+
+        li {
+            cursor: pointer;
+            transition: color 0.2s ease-in;
+
+            &:hover {
+                color: #EA4D22;
+            }
+        }
+
+        li::before {
+            content: "\2022";
+            color: #EA4D22;
+            margin-right: 15px;
+        }
+    }
+
+}
+
+.selected {
+    color: #EA4D22;
 }

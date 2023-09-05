@@ -17,9 +17,9 @@ export default function Menu() {
     const [selectedBox, setSelectedBox] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        AOS.init();
-    }, []);
+    // useEffect(() => {
+    //     AOS.init();
+    // }, []);
 
     const dishes = [
         {
@@ -190,12 +190,9 @@ export default function Menu() {
                 left: '0',
                 right: '0'
             }}>
-                {/* <animated.div style={menuContent}> */}
                 <Typography data-aos="fade-down" data-aos-duration="1000" variant="h2" sx={{
                     color: '#ffffff', fontWeight: '500', textAlign: 'center'
                 }}>Thai Food Menu</Typography>
-                {/* </animated.div> */}
-                {/* <animated.div style={menuFood}> */}
                 <Box sx={{ flexGrow: 1, marginTop: '100px' }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 2, md: 12 }}>
                         {dishes.map((dish) => (
@@ -206,7 +203,6 @@ export default function Menu() {
                         ))}
                     </Grid>
                 </Box>
-                {/* </animated.div> */}
             </Container>
 
             <ContactInfoCard />

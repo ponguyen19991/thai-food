@@ -7,6 +7,7 @@ import Today from "./pages/Today"
 import Contact from "./pages/Contact"
 import About from "./pages/About"
 import Menu from "./pages/Menu"
+import AOS from 'aos';
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "./components/LanguageSelect/LanguageSelect";
 import ScrollPrompt from "./components/ScrollPrompt/ScrollPrompt";
@@ -30,7 +31,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const delay = Math.random() * 3000 + 2000;
+    AOS.init();
+  }, []);
+
+  useEffect(() => {
+    const delay = Math.random() * 4000;
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, delay);
@@ -52,8 +57,6 @@ function App() {
       </div>
     );
   }
-
-
 
   const changeLanguage = (event) => {
     const selectedLanguage = event.target.value;

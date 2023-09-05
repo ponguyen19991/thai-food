@@ -35,8 +35,6 @@ export default function About() {
     return (
         <Box
             className='bg-about-us'
-            sx={{
-            }}
         >
             <Box className='child-bg'>
                 <Box className='child-content'>
