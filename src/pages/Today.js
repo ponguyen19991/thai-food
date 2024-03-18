@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useTranslation } from "react-i18next";
 import { Box, Container, Typography, Grid, Button } from '@mui/material';
 import '../styles/scss/today.scss'
 
 export default function Today() {
+    const { t } = useTranslation();
     const [selectedItem, setSelectedItem] = useState(1)
     const [selectedSale, setSelectedSale] = useState(1)
     const [selectedItemIndex, setSelectedItemIndex] = useState(null);
@@ -51,10 +53,10 @@ export default function Today() {
         <Container maxWidth="md">
             <Box className="content-today">
                 <Typography variant="h4">
-                    SUPER DELICIOUS
+                    {t("title-super-today-offer")}
                 </Typography>
                 <Typography variant="body">
-                    MENU
+                    {t("title-menu-today-offer")}
                 </Typography>
             </Box>
             <Box className="main-today">

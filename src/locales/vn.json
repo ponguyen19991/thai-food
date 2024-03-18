@@ -5,26 +5,19 @@
     "today-offer": "Ưu đãi hôm nay",
     "contact-us": "Liên hệ chúng tôi",
     "about-us": "Về chúng tôi",
-
     "review": "Đánh giá",
     "order-now": "ĐẶT HÀNG NGAY",
-
     "notification-coming-soon": "Cảm ơn bạn đã quan tâm đến trang web của tôi. Hiện tại, tính năng này đang được phát triển và sẽ sớm hoàn thiện thời gian sắp tới.",
-
-
     "description-pad-thai": "Món ăn được làm từ tôm, đậu hũ, trứng và bún gạo",
     "description-tom-yum": "Món ăn được làm từ ớt, nấm, tôm hoặc gà,...",
     "description-thai-rice": "Món ăn được làm bằng cách xào cơm đã nấu với các nguyên liệu khác nhau",
     "description-papaya-salad": "Món ăn được làm từ đu đủ xanh, cà chua, nước mắm,...",
     "description-sour-sausage": "Món ăn được làm từ thịt heo hoặc thịt bò kèm cơm",
-
     "main-description-pad-thai": "Thường thì món ăn này được trang trí bằng đậu phộng nghiền và thường được phục vụ kèm với miếng chanh và các loại thảo mộc tươi. Đầu bếp hoặc người nấu cụ thể làm Pad Thai có thể thay đổi tùy thuộc vào nhà hàng hoặc gia đình nơi món ăn được làm.",
     "main-description-tom-yum": "Tom Yum có thể được làm bởi cá nhân tại nhà bằng cách sử dụng nguyên liệu tươi và các gia vị truyền thống của Thái Lan. Nó cũng thường được phục vụ tại các nhà hàng Thái và có thể được tìm thấy ở các vùng khác nhau của Thái Lan. Món súp này nổi tiếng với hương vị chua chua, thơm ngon và cay nồng, đó là đặc trưng của ẩm thực Thái.",
     "main-description-thai-rice": "Cơm chiên Thái có thể được nấu bởi cả những người nội trợ ở nhà và đầu bếp chuyên nghiệp. Đây là một món ăn đa dụng có thể tùy chỉnh với các nguyên liệu và mức độ gia vị khác nhau theo sở thích cá nhân. Nó rất phổ biến trong các nhà hàng Thái trên toàn thế giới và là một lựa chọn phổ biến cho cả người dân địa phương và du khách.",
     "main-description-papaya-salad": "Các thành phần được trộn chung với nhau trong cối xay và chày, giúp phát huy hương vị và cấu trúc của các thành phần. Som Tam có thể được làm bởi cá nhân tại nhà, cũng như bởi các người bán đồ ăn vỉa hè, nhà hàng và cơ sở ẩm thực tại Thái Lan. Đó là một món salad sảng khoái và đậm đà hương vị, được nhiều người ưa thích.",
     "main-description-sour-sausage": "Người cụ thể hoặc cơ sở sản xuất sả cá lóc có thể thay đổi, vì nó là một món ăn tự làm phổ biến ở Thái Lan và Lào. Sả cá lóc được sản xuất thương mại cũng có thể có sẵn từ các nhà sản xuất thực phẩm chuyên dụng.",
-
-
     "papaya-salad": "Salad đu đủ",
     "pad-thai": "Mì xào kiểu Thái",
     "tom-yum": "Món súp cay",
@@ -34,7 +27,6 @@
     "satay": "Thịt xiên nướng",
     "khao-pad": "Cơm chiên",
     "pad-kra-pao": "Món xào thịt",
-
     "price-ps": "50.000 VND",
     "price-pd": "120.000 VND",
     "price-ty": "70.000 VND",
@@ -44,7 +36,6 @@
     "price-satay": "210.000 VND",
     "price-kp": "220.000 VND",
     "price-pkp": "230.000 VND",
-
     "description-menu-ps": "Salad đu đủ xanh giòn với hành tây, ớt, tỏi, đậu phộng, tôm và nước mắm.",
     "description-menu-pd": "Mì xào kiểu Thái với tôm, tofu hoặc thịt, trứng, hành, hành tây và đậu phộng.",
     "description-menu-ty": "Món súp cay và chua với hương vị thảo mộc, tôm hoặc gà, nấm và các gia vị khác.",
@@ -53,5 +44,7 @@
     "description-menu-msr": "Cơm nếp dẻo phủ lớp xoài chín ngọt, thường được ăn kèm với nước cốt dừa.",
     "description-menu-satay": "Thịt xiên nướng với gia vị, thường là thịt gà hoặc thịt bò, ăn kèm với sốt lạc và dưa leo.",
     "description-menu-kp": "Cơm chiên với hành, tỏi, thịt gà hoặc tôm và các nguyên liệu khác.",
-    "description-menu-pkp": " Món xào thịt với húng quế, tỏi, ớt, hành và nước mắm, thường được ăn kèm với cơm trắng và trứng ốp-la."
+    "description-menu-pkp": " Món xào thịt với húng quế, tỏi, ớt, hành và nước mắm, thường được ăn kèm với cơm trắng và trứng ốp-la.",
+    "title-super-today-offer": "SIÊU NGON",
+    "title-menu-today-offer": "MENU"
 }

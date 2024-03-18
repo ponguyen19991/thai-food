@@ -1,15 +1,26 @@
 import "./Navbar.scss";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { FaTimes, FaBars } from "react-icons/fa";
+import { FaTimes, FaBars, FaCartPlus  } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { Button } from "@mui/material";
+import Cart from "../Cart/Cart";
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
   const navRef = useRef();
   const { t, i18n } = useTranslation();
 
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav");
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
   };
 
   return (
@@ -52,7 +63,10 @@ const Navbar = () => {
                 {t("restaurants")}
             </NavLink>
           </li>
-          <li>
+          <li style={{ display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center'
+                  }}>
             <Link to="/" className="site-title" onClick={showNavbar}>
               <img
                 src="/images/ThaiLogo.png"
@@ -61,6 +75,15 @@ const Navbar = () => {
                 height={120}
               />
             </Link>
+            <Button onClick={handleClickOpen} 
+                    sx={{color: 'white',
+                        background: '#CF3835'}}>
+                <FaCartPlus fontSize={25}/>
+            </Button>
+            <Cart
+              open={open}
+              onClose={handleClose}
+            />
           </li>
           <li>
             <NavLink

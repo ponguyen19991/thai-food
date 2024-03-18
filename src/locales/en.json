@@ -5,26 +5,19 @@
     "today-offer": "Today's Offers",
     "contact-us": "Contact Us",
     "about-us": "About Us",
-
     "review": "Reviewed this",
     "order-now": "ORDER NOW",
-
     "notification-coming-soon": "Thank you for your interest in my website. Currently, this feature is being developed and will be available soon.",
-        
-    
     "description-pad-thai": "Made by shrimp, tofu, eggs and rice noodles",
     "description-tom-yum": "Made by chili peppers, mushrooms, shrimp or chicken,...",
     "description-thai-rice": "Made by stir-frying cooked rice with various ingredients",
     "description-papaya-salad": "Made by green papaya, tomatoes, fish sauce,...",
     "description-sour-sausage": "Made by pork or beef with cooked rice",
-
     "main-description-pad-thai": "It is often garnished with crushed peanuts and served with lime wedges and fresh herbs. The specific chef or cook who prepares Pad Thai can vary depending on the restaurant or household where it is being made.",
     "main-description-tom-yum": "Tom Yum can be made by individuals at home using fresh ingredients and traditional Thai seasonings. It is also commonly served in Thai restaurants and can be found in various regions of Thailand. The soup is known for its tangy, aromatic, and spicy taste, which is a signature characteristic of Thai cuisine.",
     "main-description-thai-rice": "Thai Fried Rice can be made by both home cooks and professional chefs. It is a versatile dish that can be customized with different ingredients and spice levels according to personal preferences. It is widely available in Thai restaurants worldwide and is a popular choice for both locals and visitors.",
     "main-description-papaya-salad": "The ingredients are mixed together in a mortar and pestle, which helps to release the flavors and textures of the ingredients. Som Tam can be made by individuals at home, as well as by street food vendors, restaurants, and food establishments in Thailand. It is a refreshing and flavorful salad that is enjoyed by many people.",
     "main-description-sour-sausage": "The specific individual or establishment that makes sour sausage can vary, as it is a popular homemade dish in Thailand and Laos. Commercially produced sour sausage may also be available from specialty food manufacturers.",
-
-
     "papaya-salad": "Thai Papaya Salad",
     "pad-thai": "Pad Thai",
     "tom-yum": "Tom Yum",
@@ -34,7 +27,6 @@
     "satay": "Satay",
     "khao-pad": "Khao Pad",
     "pad-kra-pao": "Pad Kra Pao",
-
     "price-ps": "$8.60",
     "price-pd": "$10.20",
     "price-ty": "$5.30",
@@ -44,7 +36,6 @@
     "price-satay": "$10.00",
     "price-kp": "$9.50",
     "price-pkp": "$12.70",
-
     "description-menu-ps": "Crispy green papaya salad with shallots, chili, garlic, peanuts, shrimp, and fish sauce.",
     "description-menu-pd": "Thai-style stir-fried noodles with shrimp, tofu or meat, eggs, scallions, onions, and peanuts.",
     "description-menu-ty": "Spicy and sour soup with herbal flavors, shrimp or chicken, mushrooms, and other spices.",
@@ -53,5 +44,7 @@
     "description-menu-msr": "Sweet glutinous rice topped with ripe mango, often served with coconut milk.",
     "description-menu-satay": "Grilled skewered meat with spices, often chicken or beef, served with peanut sauce and cucumber.",
     "description-menu-kp": " Fried rice with onions, garlic, chicken or shrimp, and other ingredients.",
-    "description-menu-pkp": "Stir-fried meat with holy basil, chili, garlic, onions, and fish sauce, often served with white rice and fried egg."
+    "description-menu-pkp": "Stir-fried meat with holy basil, chili, garlic, onions, and fish sauce, often served with white rice and fried egg.",
+    "title-super-today-offer": "SUPER DELICIOUS",
+    "title-menu-today-offer": "MENU"
 }
