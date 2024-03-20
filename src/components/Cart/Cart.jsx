@@ -5,10 +5,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, FormControl, Grid, Input, InputAdornment, InputLabel, Stack, TextField, Typography } from '@mui/material';
 
 import { FaTrashAlt } from "react-icons/fa";
 
+import './Cart.scss'
 // import img from 'images/Menu/padthai.png'
 
 const Cart = (props) => {
@@ -147,8 +148,116 @@ const Cart = (props) => {
                 </ListItem>
 
                 {/**Left Side */}
-                <ListItem sx={{ width: '550px', alignItems: "normal" }}>
-                    <Typography variant="h5" component="h4">Payment details</Typography>
+                <ListItem sx={{ width: '550px', alignItems: "normal", display: 'block' }}>
+                    <Stack direction="column" spacing={2}>
+                        <Typography variant="h5" component="h4">Payment details</Typography>
+                        <FormControl className='detailsPayment' variant="standard" sx={{ width: '100%' }}>
+                            <Stack spacing={1} mb={2}>
+                                <label>Card Holder Name</label>
+                                <TextField id="outlined-basic" variant="outlined" placeholder='Fullname....'/>
+                            </Stack>
+                            <Stack spacing={1} mb={1}>
+                                <label>Credit Card Number</label>
+                                <TextField id="outlined-basic" variant="outlined" placeholder='X X X X  X X X X  X X X X  X X X X'/>
+                            </Stack>
+                            <Stack spacing={1} mb={2}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={6}>
+                                        <label>Expiry date</label>
+                                        <TextField fullWidth id="outlined-basic" type="date" variant="outlined" placeholder='DD/MM/YY'/>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <label>CVV</label>
+                                        <TextField fullWidth id="outlined-basic" variant="outlined" placeholder='X X X'/>
+                                    </Grid>
+                                </Grid>
+                            </Stack>
+                            <Stack spacing={1} mb={2}>
+                                <label>Promo</label>
+                                <TextField
+                                    id="outlined-basic"
+                                    variant="outlined"
+                                    placeholder="Promocode"
+                                    InputProps={{
+                                        style: { paddingRight: 0 },
+                                        endAdornment: (
+                                        <InputAdornment position="end">
+                                            <Button variant="contained" sx={{ 
+                                                    width: '65px',
+                                                    height: '35px',
+                                                    backgroundColor: 'transparent',
+                                                    color: '#333',
+                                                    fontWeight: '550',
+                                                    boxShadow: 'none',
+                                                    borderLeft: '1px solid #D8D9DB',
+                                                    '&:hover': {
+                                                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                                                    }, }} 
+                                                    onClick={() => {  }}>
+                                                Apply
+                                            </Button>
+                                        </InputAdornment>
+                                        )
+                                    }}
+                                />
+                            </Stack>
+                        </FormControl>
+                    </Stack>
+
+                    <Box mt={3}>
+                        <Box sx={{ borderBottom: '1px solid #E7E6EB' }}>
+                            <Stack direction='row' justifyContent="space-between">
+                                <Typography sx={{ color: '#7D7E83' }} variant="body1">Subtotal</Typography>
+                                <Typography sx={{ color: '#7D7E83' }} variant="body1">$ 500</Typography>
+                            </Stack>
+                            <Stack direction='row' justifyContent="space-between">
+                                <Typography sx={{ color: '#7D7E83' }} variant="body1">Shipping Cost</Typography>
+                                <Typography sx={{ color: '#7D7E83' }} variant="body1">$ 10</Typography>
+                            </Stack>
+                            <Stack direction='row' justifyContent="space-between">
+                                <Typography sx={{ color: '#7D7E83' }} variant="body1">Discount</Typography>
+                                <Typography sx={{ color: '#7D7E83' }} variant="body1">$ 0</Typography>
+                            </Stack>
+                        </Box>
+                        <Stack direction='row' justifyContent="space-between">
+                            <Typography sx={{ color: '#7D7E83' }} variant="p">Total amount</Typography>
+                            <Typography sx={{ color: '#7D7E83' }} variant="p">$ 500</Typography>
+                        </Stack>
+                    </Box>
+
+                    <Stack spacing={1} mt={1}>
+                        <Button
+                            sx={{
+                                height: '50px',
+                                backgroundColor: '#DABB2D',
+                                boxShadow: 'none',
+                                fontWeight: '550',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                                },
+                            }}
+                            variant="contained"
+                            >
+                            Make Payment
+                        </Button>
+
+                        <Button
+                            onClick={handleListItemClick}
+                            sx={{
+                                height: '50px',
+                                backgroundColor: '#EDECE8',
+                                color: '#333',
+                                boxShadow: 'none',
+                                fontWeight: '550',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+                                },
+                            }}
+                            variant="contained"
+                            >
+                            Continue Order
+                        </Button>
+                    </Stack>
                 </ListItem>
 
             </Stack>
