@@ -6,17 +6,20 @@ import ListItemText from '@mui/material/ListItemText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import creditCardType from 'credit-card-type';
-import { Box, Button, FormControl, Grid, Input, InputAdornment, InputLabel, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, FormControl, Grid, Input, InputAdornment, InputLabel, Stack, TextField, Typography, Snackbar, Alert   } from '@mui/material';
 
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaSearch  } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 
 import './Cart.scss'
 // import img from 'images/Menu/padthai.png'
 
 const Cart = (props) => {
+    const [openAlert, setOpenAlert] = useState(false);
     const { onClose, selectedValue, open } = props;
     const [cardType, setCardType] = useState(null);
-    const [activeButton, setActiveButton] = useState('visa-master');
+    // const [activeButton, setActiveButton] = useState('visa-master');
+    const [activeButton, setActiveButton] = useState(null);
 
     const [thaiFood, setThaiFood] = useState([
         { "foodName": "Food 1", "price": "$10", "src": "images/Menu/padthai.png", "quantity": 1, "initialPrice": 10 },
@@ -24,6 +27,47 @@ const Cart = (props) => {
     { "foodName": "Food 2", "price": "$15", "src": "images/Menu/padthai.png", "quantity": 2, "initialPrice": 15 },
     { "foodName": "Food 2", "price": "$15", "src": "images/Menu/padthai.png", "quantity": 2, "initialPrice": 15 },
     ]);
+
+    const internetBanking = [
+        {
+            name: "Vietinbank",
+            src: "images/payment/onlineBanking/vietinbank.png"
+        },
+        {
+            name: "Vietcombank",
+            src: "images/payment/onlineBanking/vietcombank.png"
+        },
+        {
+            name: "TP Bank",
+            src: "images/payment/onlineBanking/tpbank.png"
+        },
+        {
+            name: "Techcombank",
+            src: "images/payment/onlineBanking/techcombank.png"
+        },
+        {
+            name: "SeA Bank",
+            src: "images/payment/onlineBanking/seabank.png"
+        },
+        {
+            name: "SCB",
+            src: "images/payment/onlineBanking/scbbank.png"
+        },
+        {
+            name: "MB Bank",
+            src: "images/payment/onlineBanking/mbbank.png"
+        },
+        {
+            name: "HD Bank",
+            src: "images/payment/onlineBanking/hdbank.png"
+        },
+        {
+            name: "BIDV",
+            src: "images/payment/onlineBanking/BIDV.png"
+        },
+      
+    ];
+    
     
     const decreaseQuantity = (index) => {
         if (thaiFood[index].quantity > 1) {
@@ -47,7 +91,6 @@ const Cart = (props) => {
     };
     
     
-
     const handleDeleteItem = (index) => {
         const newThaiFood = [...thaiFood];
         newThaiFood.splice(index, 1);
@@ -64,7 +107,7 @@ const Cart = (props) => {
     };
 
     useEffect(() => {
-        setActiveButton('visa-master');
+        setActiveButton('online');
       }, []);
 
     const handleButtonClick = (buttonName) => {
@@ -91,7 +134,14 @@ const Cart = (props) => {
         return null;
     };
     
-    
+    const handleClickAlert = () => {
+        setOpenAlert(true); // Mở Snackbar khi click vào Box
+    };
+
+    const handleCloseAlert = () => {
+        setOpenAlert(false); // Đóng Snackbar khi click vào nút đóng hoặc khi tự động đóng
+    };
+
 
   return (
     <Dialog onClose={handleClose} open={open} maxWidth="lg">
@@ -184,14 +234,17 @@ const Cart = (props) => {
 
                 {/**Left Side */}
                 <ListItem sx={{ width: '550px', alignItems: "normal", display: 'block' }}>
-                    <Typography variant="h5" component="h4" mb={2}>Payment details</Typography>
+                    <Stack direction="row" justifyContent="space-between">
+                        <Typography variant="h5" component="h4" mb={2}>Payment details</Typography>
+                        <IoClose onClick={handleListItemClick} style={{ fontSize: '30px', opacity: '0.7', cursor: "pointer" }}/>
+                    </Stack>
                     {activeButton === 'visa-master' && (
                         <Box className="visa-masterCard">
                             <Stack direction="column" spacing={2}>
                                 <FormControl className='detailsPayment' variant="standard" sx={{ width: '100%' }}>
                                     <Stack spacing={1} mb={2}>
                                         <label>Card Holder Name</label>
-                                        <TextField id="outlined-basic" variant="outlined" placeholder='Fullname....'/>
+                                        <TextField id="outlined-basic" variant="outlined" placeholder='Fullname....' required/>
                                     </Stack>
                                     <Stack spacing={1} mb={1}>
                                         <label>Credit Card Number</label>
@@ -327,7 +380,38 @@ const Cart = (props) => {
                     )}
                     {activeButton === 'online' && (
                         <Box className="online-banking">
-                            Test
+                            <TextField
+                                className='search-Banking'
+                                fullWidth
+                                id="outlined-basic"
+                                variant="outlined"
+                                InputProps={{
+                                    startAdornment: (
+                                    <InputAdornment position="start">
+                                        <FaSearch />
+                                    </InputAdornment>
+                                    ),
+                                }}
+                                />
+                            <Box className="listBanking" display="flex" flexWrap="wrap" justifyContent="space-between" mt={4}>
+                            {internetBanking.map((bank, index) => (
+                                <Box className="bank" onClick={handleClickAlert} key={index} sx={{ width: '150px', height: '50px', marginBottom: '20px' }}>
+                                    <Stack justifyContent="center" alignItems="center" sx={{ height: '100%' }}>
+                                        <img src={bank.src} alt={bank.name} width={100} />
+                                    </Stack>
+                                </Box>
+                            ))}
+                                <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleCloseAlert}>
+                                    <Alert
+                                        onClose={handleCloseAlert}
+                                        severity="success"
+                                        variant="filled"
+                                        sx={{ width: '100%' }}
+                                    >
+                                        This feature not ready yet! Try it later ^.^
+                                    </Alert>
+                                </Snackbar>
+                            </Box>
                         </Box>
                     )}
                 </ListItem>
