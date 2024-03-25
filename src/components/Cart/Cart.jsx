@@ -107,7 +107,7 @@ const Cart = (props) => {
     };
 
     useEffect(() => {
-        setActiveButton('online');
+        setActiveButton('visa-master');
       }, []);
 
     const handleButtonClick = (buttonName) => {
@@ -135,11 +135,11 @@ const Cart = (props) => {
     };
     
     const handleClickAlert = () => {
-        setOpenAlert(true); // Mở Snackbar khi click vào Box
+        setOpenAlert(true); 
     };
 
     const handleCloseAlert = () => {
-        setOpenAlert(false); // Đóng Snackbar khi click vào nút đóng hoặc khi tự động đóng
+        setOpenAlert(false); 
     };
 
 
@@ -151,7 +151,7 @@ const Cart = (props) => {
                 {/**Right Side */}
                 <ListItem sx={{ width: '550px'}}>
                     <Stack direction="column">
-                        <Box sx={{ background: '#F5F6F8', borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}>
+                        <Box sx={{ background: '#F5F6F8', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', height: '465px' }}>
                             <Typography sx={{ padding: '15px' }} variant="h5" component="h4">Your shopping cart</Typography>
                             <Stack direction="column" spacing={2} sx={{ maxHeight: '400px', overflowY: 'auto' }}>
                                 {thaiFood.map((item, index) => (
@@ -412,6 +412,22 @@ const Cart = (props) => {
                                     </Alert>
                                 </Snackbar>
                             </Box>
+                        </Box>
+                    )}
+                    {activeButton === 'momo' && (
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '500px', opacity: '0.5' }}>
+                            <Typography variant="h5" component="h4" mb={2}>This feature is under development ...</Typography>
+                            {/* <Box className="QRMomo">
+
+                            </Box> */}
+                        </Box>
+                    )}
+                    {activeButton === 'paypal' && (
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '500px', opacity: '0.5' }}>
+                            <Typography variant="h5" component="h4" mb={2}>This feature is under development ...</Typography>
+                            {/* <Box className="QRMomo">
+
+                            </Box> */}
                         </Box>
                     )}
                 </ListItem>
