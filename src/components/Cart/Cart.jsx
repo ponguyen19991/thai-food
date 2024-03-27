@@ -21,12 +21,7 @@ const Cart = (props) => {
     // const [activeButton, setActiveButton] = useState('visa-master');
     const [activeButton, setActiveButton] = useState(null);
 
-    const [thaiFood, setThaiFood] = useState([
-        { "foodName": "Food 1", "price": "$10", "src": "images/Menu/padthai.png", "quantity": 1, "initialPrice": 10 },
-    { "foodName": "Food 2", "price": "$15", "src": "images/Menu/padthai.png", "quantity": 2, "initialPrice": 15 },
-    { "foodName": "Food 2", "price": "$15", "src": "images/Menu/padthai.png", "quantity": 2, "initialPrice": 15 },
-    { "foodName": "Food 2", "price": "$15", "src": "images/Menu/padthai.png", "quantity": 2, "initialPrice": 15 },
-    ]);
+    const shippingCost = 10;
 
     const internetBanking = [
         {
@@ -69,33 +64,49 @@ const Cart = (props) => {
     ];
     
     
+    const increaseQuantity = (index) => {
+        const updatedCartItems = [...props.cartItems];
+        updatedCartItems[index].quantity += 1;
+        updatedCartItems[index].totalPrice = updatedCartItems[index].price * updatedCartItems[index].quantity;
+        props.setCartItems(updatedCartItems);
+    };
+    
     const decreaseQuantity = (index) => {
-        if (thaiFood[index].quantity > 1) {
-            const newThaiFood = [...thaiFood];
-            newThaiFood[index].quantity -= 1;
-            newThaiFood[index].totalPrice = calculateTotalPrice(newThaiFood[index]);
-            setThaiFood(newThaiFood);
+        const updatedCartItems = [...props.cartItems];
+        if (updatedCartItems[index].quantity > 1) {
+            updatedCartItems[index].quantity -= 1;
+            updatedCartItems[index].totalPrice = updatedCartItems[index].price * updatedCartItems[index].quantity;
+            props.setCartItems(updatedCartItems);
         }
     };
     
-    const increaseQuantity = (index) => {
-        const newThaiFood = [...thaiFood];
-        newThaiFood[index].quantity += 1;
-        newThaiFood[index].totalPrice = calculateTotalPrice(newThaiFood[index]);
-        setThaiFood(newThaiFood);
+    const calculateTotalPrice = () => {
+        return props.cartItems.reduce((total, item) => {
+            return total + (item.price * item.quantity);
+        }, 0);
+    };
+
+    const calculateSubTotal = () => {
+        return props.cartItems.reduce((total, item) => {
+            return total + item.totalPrice; 
+        }, 0);
+    };
+
+    const calculateShippingCost = () => {
+        return props.cartItems.length === 0 ? 0 : shippingCost;
     };
     
-    const calculateTotalPrice = (item) => {
-        const price = parseFloat(item.initialPrice);
-        return '$' + (price * item.quantity).toFixed(2);
+    const calculateTotalAmount = () => {
+        return calculateSubTotal() + calculateShippingCost();
     };
-    
-    
+
+
     const handleDeleteItem = (index) => {
-        const newThaiFood = [...thaiFood];
-        newThaiFood.splice(index, 1);
-        setThaiFood(newThaiFood);
+        const newCartItems = [...props.cartItems];
+        newCartItems.splice(index, 1);
+        props.setCartItems(newCartItems); 
     };
+    
     
 
     const handleClose = () => {
@@ -154,14 +165,14 @@ const Cart = (props) => {
                         <Box sx={{ background: '#F5F6F8', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', height: '465px' }}>
                             <Typography sx={{ padding: '15px' }} variant="h5" component="h4">Your shopping cart</Typography>
                             <Stack direction="column" spacing={2} sx={{ maxHeight: '400px', overflowY: 'auto' }}>
-                                {thaiFood.map((item, index) => (
+                                {props.cartItems.map((item, index) => (
                                     <Box key={index} sx={{ borderBottom: '1px solid #ccc' }}>
                                         <Stack direction="row" alignItems="center" spacing={1}>
                                             <img src={item.src} alt="img food" width={100} />
                                             <Box>
-                                                <Typography variant="body1">{item.foodName}</Typography>
+                                                <Typography variant="body1">{item.name}</Typography>
                                                 <Typography variant='body2' sx={{ fontWeight: '550', color: '#989898', width: '90px' }}>
-                                                    {item.totalPrice || calculateTotalPrice(item)}
+                                                    ${item.totalPrice.toFixed(2)}
                                                 </Typography>
                                                 <Stack direction="row" justifyContent="space-between" spacing={21}>
                                                     <Box>
@@ -326,11 +337,11 @@ const Cart = (props) => {
                                 <Box sx={{ borderBottom: '1px solid #E7E6EB' }}>
                                     <Stack direction='row' justifyContent="space-between">
                                         <Typography sx={{ color: '#7D7E83' }} variant="body1">Subtotal</Typography>
-                                        <Typography sx={{ color: '#7D7E83' }} variant="body1">$ 500</Typography>
+                                        <Typography sx={{ color: '#7D7E83' }} variant="body1">${calculateSubTotal().toFixed(2)}</Typography>
                                     </Stack>
                                     <Stack direction='row' justifyContent="space-between">
                                         <Typography sx={{ color: '#7D7E83' }} variant="body1">Shipping Cost</Typography>
-                                        <Typography sx={{ color: '#7D7E83' }} variant="body1">$ 10</Typography>
+                                        <Typography sx={{ color: '#7D7E83' }} variant="body1">${calculateShippingCost().toFixed(2)}</Typography>
                                     </Stack>
                                     <Stack direction='row' justifyContent="space-between">
                                         <Typography sx={{ color: '#7D7E83' }} variant="body1">Discount</Typography>
@@ -338,8 +349,8 @@ const Cart = (props) => {
                                     </Stack>
                                 </Box>
                                 <Stack direction='row' justifyContent="space-between">
-                                    <Typography sx={{ color: '#7D7E83' }} variant="p">Total amount</Typography>
-                                    <Typography sx={{ color: '#7D7E83' }} variant="p">$ 500</Typography>
+                                    <Typography sx={{ color: '#7D7E83' }} variant="body1">Total amount</Typography>
+                                    <Typography sx={{ color: '#7D7E83' }} variant="body1">$ {calculateTotalAmount().toFixed(2)}</Typography>
                                 </Stack>
                             </Box>
 

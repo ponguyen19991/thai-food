@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Card, CardMedia, Box, Container, Typography, Grid, CardContent, Modal, Button } from '@mui/material';
+import { Card, CardMedia, Box, Container, Typography, Grid, CardContent, Modal, Button, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSpring, animated } from '@react-spring/web'
+import { FaTimes, FaBars, FaCartPlus } from "react-icons/fa";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -10,12 +11,52 @@ import BoxMenuFood from '../components/BoxItem/BoxMenuFood.jsx';
 import ModalMenuFood from '../components/Modal/ModalMenuFood.jsx';
 import ContactInfoCard from '../components/CardOrder/Card.jsx';
 import '../styles/scss/menu.scss'
+import Cart from "../components/Cart/Cart";
 
 
 export default function Menu() {
     const { t, i18n } = useTranslation();
     const [selectedBox, setSelectedBox] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [cartItems, setCartItems] = useState([]);
+
+    // const handleAddToCart = (e, dish) => {
+    //     e.stopPropagation();
+    //     const existingItemIndex = cartItems.findIndex(item => item.name === dish.name);
+    //     const currencyRegex = /(?:\d|\.)+/;
+
+    //     const currencyValue = parseFloat(dish.price.match(currencyRegex)[0]);
+
+    //     if (existingItemIndex !== -1) {
+    //         const updatedCartItems = [...cartItems];
+    //         updatedCartItems[existingItemIndex].quantity += 1;
+
+    //         updatedCartItems[existingItemIndex].totalPrice = currencyValue * updatedCartItems[existingItemIndex].quantity;
+    //         setCartItems(updatedCartItems);
+    //     } else {
+    //         const newItem = { ...dish, quantity: 1, totalPrice: currencyValue };
+    //         setCartItems([...cartItems, newItem]);
+    //     }
+    // };
+
+    const handleAddToCart = (e, dish) => {
+        e.stopPropagation();
+        const existingItemIndex = cartItems.findIndex(item => item.name === dish.name);
+        if (existingItemIndex !== -1) {
+            const updatedCartItems = [...cartItems];
+            updatedCartItems[existingItemIndex].quantity += 1;
+            // Cập nhật giá cho mỗi món
+            updatedCartItems.forEach(item => {
+                item.totalPrice = item.price * item.quantity;
+            });
+            setCartItems(updatedCartItems);
+        } else {
+            // Thêm món mới vào giỏ hàng
+            const newItem = { ...dish, quantity: 1, totalPrice: dish.price };
+            setCartItems([...cartItems, newItem]);
+        }
+    };
 
     // useEffect(() => {
     //     AOS.init();
@@ -24,9 +65,10 @@ export default function Menu() {
     const dishes = [
         {
             id: 0,
-            name: 'papaya-salad',
+            name: t('papaya-salad'),
             description: 'description-menu-ps',
-            price: 'price-ps',
+            // price: t('price-ps'),
+            price: 8.60,
             src: "/images/Menu/papaya-salad.jpg",
             rate: {
                 description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
@@ -37,9 +79,10 @@ export default function Menu() {
         },
         {
             id: 1,
-            name: 'pad-thai',
+            name: t('pad-thai'),
             description: 'description-menu-pd',
-            price: 'price-pd',
+            // price: t('price-ps'),
+            price: 10.20,
             src: "/images/Menu/pad-thai.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -51,9 +94,10 @@ export default function Menu() {
         },
         {
             id: 2,
-            name: 'tom-yum',
+            name: t('tom-yum'),
             description: 'description-menu-ty',
-            price: 'price-ty',
+            // price: t('price-ps'),
+            price: 5.30,
             src: "/images/Menu/tom-yum.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -65,9 +109,10 @@ export default function Menu() {
         },
         {
             id: 3,
-            name: 'green-curry',
+            name: t('green-curry'),
             description: 'description-menu-gc',
-            price: 'price-gc',
+            // price: t('price-ps'),
+            price: 6.60,
             src: "/images/Menu/green-curry.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -79,9 +124,10 @@ export default function Menu() {
         },
         {
             id: 4,
-            name: 'massaman-curry',
+            name: t('massaman-curry'),
             description: 'description-menu-mc',
-            price: 'price-mc',
+            // price: t('price-ps'),
+            price: 15.60,
             src: "/images/Menu/massaman-curry.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -93,9 +139,10 @@ export default function Menu() {
         },
         {
             id: 5,
-            name: 'mango-sticky-rice',
+            name: t('mango-sticky-rice'),
             description: 'description-menu-msr',
-            price: 'price-msr',
+            // price: t('price-ps'),
+            price: 16.60,
             src: "/images/Menu/mango-sticky-rice.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -107,9 +154,10 @@ export default function Menu() {
         },
         {
             id: 6,
-            name: 'satay',
+            name: t('satay'),
             description: 'description-menu-satay',
-            price: 'price-satay',
+            // price: t('price-ps'),
+            price: 10.60,
             src: "/images/Menu/satay.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -121,9 +169,10 @@ export default function Menu() {
         },
         {
             id: 7,
-            name: 'khao-pad',
+            name: t('khao-pad'),
             description: 'description-menu-kp',
-            price: 'price-kp',
+            // price: t('price-ps'),
+            price: 9.60,
             src: "/images/Menu/khao-pad.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -135,9 +184,10 @@ export default function Menu() {
         },
         {
             id: 8,
-            name: 'pad-kra-pao',
+            name: t('pad-kra-pao'),
             description: 'description-menu-pkp',
-            price: 'price-pkp',
+            // price: t('price-ps'),
+            price: 2.60,
             src: "/images/Menu/pad-kra-pao.jpg",
             rate: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
             rate: {
@@ -173,6 +223,14 @@ export default function Menu() {
         delay: 600,
     })
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (value) => {
+        setOpen(false);
+    };
+
     return (
         <Box sx={{ position: 'relative' }}>
             <Card sx={{ display: 'flex', background: 'transparent', opacity: '0.5' }}>
@@ -190,14 +248,29 @@ export default function Menu() {
                 left: '0',
                 right: '0'
             }}>
-                <Typography data-aos="fade-down" data-aos-duration="1000" variant="h2" sx={{
-                    color: '#ffffff', fontWeight: '500', textAlign: 'center'
-                }}>Thai Food Menu</Typography>
+                <Stack direction="column" alignItems="center" justifyContent="center">
+                    <Typography data-aos="fade-down" data-aos-duration="1000" variant="h2" sx={{
+                        color: '#ffffff', fontWeight: '500', textAlign: 'center'
+                    }}>Thai Food Menu</Typography>
+                    <Button data-aos="fade-down" data-aos-duration="1000" onClick={handleClickOpen}
+                        sx={{
+                            color: 'white',
+                            background: '#CF3835'
+                        }}>
+                        <FaCartPlus fontSize={25} />
+                    </Button>
+                </Stack>
+                <Cart
+                    open={open}
+                    onClose={handleClose}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                />
                 <Box sx={{ flexGrow: 1, marginTop: '100px' }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 2, md: 12 }}>
                         {dishes.map((dish) => (
                             <Grid data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" item xs={6} sm={4} md={4} key={dish.id}>
-                                <BoxMenuFood dish={dish} openModal={openModal} t={t} />
+                                <BoxMenuFood dish={dish} openModal={openModal} t={t} handleAddToCart={handleAddToCart} />
                                 <ModalMenuFood selectedBox={selectedBox} isModalOpen={isModalOpen} closeModal={closeModal} t={t} />
                             </Grid>
                         ))}

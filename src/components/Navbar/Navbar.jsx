@@ -63,10 +63,7 @@ const Navbar = () => {
                 {t("restaurants")}
             </NavLink>
           </li>
-          <li style={{ display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center'
-                  }}>
+          <li>
             <Link to="/" className="site-title" onClick={showNavbar}>
               <img
                 src="/images/ThaiLogo.png"
@@ -75,7 +72,7 @@ const Navbar = () => {
                 height={120}
               />
             </Link>
-            <Button onClick={handleClickOpen} 
+            {/* <Button onClick={handleClickOpen} 
                     sx={{color: 'white',
                         background: '#CF3835'}}>
                 <FaCartPlus fontSize={25}/>
@@ -83,7 +80,7 @@ const Navbar = () => {
             <Cart
               open={open}
               onClose={handleClose}
-            />
+            /> */}
           </li>
           <li>
             <NavLink
