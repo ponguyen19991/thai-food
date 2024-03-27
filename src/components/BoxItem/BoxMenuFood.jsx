@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Button, Stack, Typography, Alert, Snackbar } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { FaShoppingCart } from "react-icons/fa";
 
-const BoxMenuFood = ({ dish, openModal, t, handleAddToCart }) => {
-  const [openAlert, setOpenAlert] = useState(false);
+const BoxMenuFood = ({ dish, openModal, t, handleAddToCart, handleClickAlert }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -11,13 +10,6 @@ const BoxMenuFood = ({ dish, openModal, t, handleAddToCart }) => {
     handleClickAlert()
   };
 
-  const handleClickAlert = () => {
-    setOpenAlert(true); 
-};
-
-const handleCloseAlert = () => {
-    setOpenAlert(false); 
-};
 
   return (
     <Box>
@@ -56,16 +48,7 @@ const handleCloseAlert = () => {
       </Button>
         
     </Box>
-      <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleCloseAlert}>
-                  <Alert
-                      onClose={handleCloseAlert}
-                      severity="success"
-                      variant="filled"
-                      sx={{ width: '100%' }}
-                  >
-                      Food added successfully
-                  </Alert>
-        </Snackbar>
+  
     </Box>
     
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, CardMedia, Box, Container, Typography, Grid, CardContent, Modal, Button, Stack } from '@mui/material';
+import { Card, CardMedia, Box, Container, Typography, Grid, CardContent, Modal, Button, Stack, Alert, Snackbar } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useSpring, animated } from '@react-spring/web'
 import { FaTimes, FaBars, FaCartPlus } from "react-icons/fa";
@@ -20,7 +20,15 @@ export default function Menu() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
+    const [openAlert, setOpenAlert] = useState(false);
 
+    const handleClickAlert = () => {
+        setOpenAlert(true);
+    };
+
+    const handleCloseAlert = () => {
+        setOpenAlert(false);
+    };
     // const handleAddToCart = (e, dish) => {
     //     e.stopPropagation();
     //     const existingItemIndex = cartItems.findIndex(item => item.name === dish.name);
@@ -270,7 +278,7 @@ export default function Menu() {
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 2, md: 12 }}>
                         {dishes.map((dish) => (
                             <Grid data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" item xs={6} sm={4} md={4} key={dish.id}>
-                                <BoxMenuFood dish={dish} openModal={openModal} t={t} handleAddToCart={handleAddToCart} />
+                                <BoxMenuFood dish={dish} openModal={openModal} t={t} handleAddToCart={handleAddToCart} handleClickAlert={handleClickAlert} />
                                 <ModalMenuFood selectedBox={selectedBox} isModalOpen={isModalOpen} closeModal={closeModal} t={t} />
                             </Grid>
                         ))}
@@ -279,6 +287,16 @@ export default function Menu() {
             </Container>
 
             <ContactInfoCard />
+            <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleCloseAlert}>
+                <Alert
+                    onClose={handleCloseAlert}
+                    severity="success"
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                >
+                    Food added successfully
+                </Alert>
+            </Snackbar>
         </Box>
     )
 }
