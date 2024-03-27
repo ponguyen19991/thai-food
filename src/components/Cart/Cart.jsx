@@ -16,6 +16,7 @@ import './Cart.scss'
 
 const Cart = (props) => {
     const [openAlert, setOpenAlert] = useState(false);
+    const [openAlertError, setOpenAlertError] = useState(false);
     const { onClose, selectedValue, open } = props;
     const [cardType, setCardType] = useState(null);
     // const [activeButton, setActiveButton] = useState('visa-master');
@@ -66,10 +67,15 @@ const Cart = (props) => {
     
     const increaseQuantity = (index) => {
         const updatedCartItems = [...props.cartItems];
-        updatedCartItems[index].quantity += 1;
-        updatedCartItems[index].totalPrice = updatedCartItems[index].price * updatedCartItems[index].quantity;
-        props.setCartItems(updatedCartItems);
+        if (updatedCartItems[index].quantity < 5) {
+            updatedCartItems[index].quantity += 1;
+            updatedCartItems[index].totalPrice = updatedCartItems[index].price * updatedCartItems[index].quantity;
+            props.setCartItems(updatedCartItems);
+        } else {
+            handleClickAlertError()
+        }
     };
+    
     
     const decreaseQuantity = (index) => {
         const updatedCartItems = [...props.cartItems];
@@ -151,6 +157,14 @@ const Cart = (props) => {
 
     const handleCloseAlert = () => {
         setOpenAlert(false); 
+    };
+
+    const handleClickAlertError = () => {
+        setOpenAlertError(true); 
+    };
+
+    const handleCloseAlertError = () => {
+        setOpenAlertError(false); 
     };
 
 
@@ -422,6 +436,7 @@ const Cart = (props) => {
                                         This feature not ready yet! Try it later ^.^
                                     </Alert>
                                 </Snackbar>
+                                
                             </Box>
                         </Box>
                     )}
@@ -445,6 +460,16 @@ const Cart = (props) => {
 
             </Stack>
         </List>
+        <Snackbar open={openAlertError} autoHideDuration={3000} onClose={handleCloseAlertError}>
+            <Alert
+                onClose={handleCloseAlertError}
+                severity="error"
+                variant="filled"
+                sx={{ width: '100%' }}
+            >
+                Maximum quantity reached
+            </Alert>
+        </Snackbar>
   </Dialog>
   )
 }
