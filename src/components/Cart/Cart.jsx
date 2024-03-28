@@ -110,8 +110,11 @@ const Cart = (props) => {
     const handleDeleteItem = (index) => {
         const newCartItems = [...props.cartItems];
         newCartItems.splice(index, 1);
-        props.setCartItems(newCartItems); 
+        props.setCartItems(newCartItems);
+        const newCount = newCartItems.reduce((total, item) => total + item.quantity, 0); 
+        props.updateCartCount(newCount); 
     };
+    
     
     
 

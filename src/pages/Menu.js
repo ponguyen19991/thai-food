@@ -21,6 +21,7 @@ export default function Menu() {
     const [open, setOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [openAlert, setOpenAlert] = useState(false);
+    const [cartCount, setCartCount] = useState(0);
 
     const handleClickAlert = () => {
         setOpenAlert(true);
@@ -63,7 +64,12 @@ export default function Menu() {
             // Thêm món mới vào giỏ hàng
             const newItem = { ...dish, quantity: 1, totalPrice: dish.price };
             setCartItems([...cartItems, newItem]);
+            setCartCount(cartCount + 1);
         }
+    };
+
+    const updateCartCount = (newCount) => {
+        setCartCount(newCount);
     };
 
     // useEffect(() => {
@@ -263,9 +269,14 @@ export default function Menu() {
                     <Button data-aos="fade-down" data-aos-duration="1000" onClick={handleClickOpen}
                         sx={{
                             color: 'white',
-                            background: '#CF3835'
+                            background: '#CF3835',
+                            '&:hover': {
+                                backgroundColor: 'rgba(207, 56, 53, 0.8)'
+                            }
                         }}>
                         <FaCartPlus fontSize={25} />
+                        <Typography variant='body1' ml={1} mr={1} fontWeight={550}>Cart</Typography>
+                        <Typography variant='body1' fontWeight={550} sx={{ backgroundColor: 'white', width: '25px', borderRadius: '50%', color: '#CF3835' }}>{cartCount}</Typography>
                     </Button>
                 </Stack>
                 <Cart
@@ -273,6 +284,7 @@ export default function Menu() {
                     onClose={handleClose}
                     cartItems={cartItems}
                     setCartItems={setCartItems}
+                    updateCartCount={updateCartCount}
                 />
                 <Box sx={{ flexGrow: 1, marginTop: '100px' }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 2, md: 12 }}>
@@ -297,6 +309,6 @@ export default function Menu() {
                     Food added successfully
                 </Alert>
             </Snackbar>
-        </Box>
+        </Box >
     )
 }
