@@ -181,33 +181,37 @@ const Cart = (props) => {
                     <Stack direction="column">
                         <Box sx={{ background: '#F5F6F8', borderTopLeftRadius: '10px', borderTopRightRadius: '10px', height: '465px' }}>
                             <Typography sx={{ padding: '15px' }} variant="h5" component="h4">Your shopping cart</Typography>
-                            <Stack direction="column" spacing={2} sx={{ maxHeight: '400px', overflowY: 'auto' }}>
-                                {props.cartItems.map((item, index) => (
-                                    <Box key={index} sx={{ borderBottom: '1px solid #ccc' }}>
-                                        <Stack direction="row" alignItems="center" spacing={1}>
-                                            <img src={item.src} alt="img food" width={100} />
-                                            <Box>
-                                                <Typography variant="body1">{item.name}</Typography>
-                                                <Typography variant='body2' sx={{ fontWeight: '550', color: '#989898', width: '90px' }}>
-                                                    ${item.totalPrice.toFixed(2)}
-                                                </Typography>
-                                                <Stack direction="row" justifyContent="space-between" spacing={21}>
-                                                    <Box>
-                                                        <Stack direction="row" alignItems="center" spacing={2}>
-                                                            <Typography variant='body2' sx={{ fontWeight: '550', color: '#989898', width: '85px' }}>Quantity: {item.quantity}</Typography>
-                                                            <Box sx={{ marginBottom: '5px !important' }}>
-                                                                <Button onClick={() => decreaseQuantity(index)} sx={{ minWidth: '25px', height: '25px', border: '1px solid #989898', color: '#989898', marginRight: '10px' }}>-</Button>
-                                                                <Button onClick={() => increaseQuantity(index)} sx={{ minWidth: '25px', height: '25px', border: '1px solid #989898', color: '#989898' }}>+</Button>
-                                                            </Box>
-                                                        </Stack>
-                                                    </Box>
-                                                    <Button onClick={() => handleDeleteItem(index)} sx={{ minWidth: '25px', color: '#989898', marginRight: '10px !important' }}><FaTrashAlt /></Button>
-                                                </Stack>
-                                            </Box>
-                                        </Stack>
-                                    </Box>
-                                ))}
-                            </Stack>
+                            {props.cartItems.length === 0 ? (
+                                <img src="images/empty-cart.png" alt="empty" style={{ opacity: '0.7' }}/>
+                            ) : (
+                                <Stack direction="column" spacing={2} sx={{ maxHeight: '400px', overflowY: 'auto' }}>
+                                    {props.cartItems.map((item, index) => (
+                                        <Box key={index} sx={{ borderBottom: '1px solid #ccc' }}>
+                                            <Stack direction="row" alignItems="center" spacing={1}>
+                                                <img src={item.src} alt="img food" width={100} />
+                                                <Box>
+                                                    <Typography variant="body1">{item.name}</Typography>
+                                                    <Typography variant='body2' sx={{ fontWeight: '550', color: '#989898', width: '90px' }}>
+                                                        ${item.totalPrice.toFixed(2)}
+                                                    </Typography>
+                                                    <Stack direction="row" justifyContent="space-between" spacing={21}>
+                                                        <Box>
+                                                            <Stack direction="row" alignItems="center" spacing={2}>
+                                                                <Typography variant='body2' sx={{ fontWeight: '550', color: '#989898', width: '85px' }}>Quantity: {item.quantity}</Typography>
+                                                                <Box sx={{ marginBottom: '5px !important' }}>
+                                                                    <Button onClick={() => decreaseQuantity(index)} sx={{ minWidth: '25px', height: '25px', border: '1px solid #989898', color: '#989898', marginRight: '10px' }}>-</Button>
+                                                                    <Button onClick={() => increaseQuantity(index)} sx={{ minWidth: '25px', height: '25px', border: '1px solid #989898', color: '#989898' }}>+</Button>
+                                                                </Box>
+                                                            </Stack>
+                                                        </Box>
+                                                        <Button onClick={() => handleDeleteItem(index)} sx={{ minWidth: '25px', color: '#989898', marginRight: '10px !important' }}><FaTrashAlt /></Button>
+                                                    </Stack>
+                                                </Box>
+                                            </Stack>
+                                        </Box>
+                                    ))}
+                                </Stack>
+                            )}
                         </Box>
                         <Box sx={{ backgroundColor: '#747B8D', borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }}>
                             <Typography sx={{ padding: '15px', color: '#fff' }} variant="h5" component="h4">Payment Method</Typography>
