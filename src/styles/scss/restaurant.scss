@@ -1,7 +1,54 @@
-strong {
-    display: block;
-    width: 100%;
-    font-size: 30px;
-    text-align: center;
-    color: white;  
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import '/src/styles/mixins/responsive.scss';
+
+.dancingStyle {
+    font-family: "Dancing Script", cursive !important;
+    font-weight: 550 !important;
+    font-style: normal !important;
+    font-size: 25px !important;
+}
+
+@include mobile {
+    .blockRoot {
+        display: block !important;
+    }
+
+    .MuiBox-root {
+        width: 100% !important;
+    }
+
+    .MuiPaper-root {
+        width: 100% !important;
+        margin-top: 20px;
+    }
+}
+
+@include table {
+    .blockRoot {
+        display: block !important;
+    }
+
+    .MuiBox-root {
+        width: 100% !important;
+    }
+
+    .MuiPaper-root {
+        width: 100% !important;
+        margin-top: 20px;
+    }
+}
+
+@include tableDesktop {
+    .blockRoot {
+        display: block !important;
+    }
+
+    .MuiBox-root {
+        width: 100% !important;
+    }
+
+    .MuiPaper-root {
+        width: 100% !important;
+        margin-top: 20px;
+    }
 }

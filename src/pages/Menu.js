@@ -43,24 +43,6 @@ export default function Menu() {
     const handleCloseAlertMaximum = () => {
         setOpenAlertMaximum(false);
     };
-    // const handleAddToCart = (e, dish) => {
-    //     e.stopPropagation();
-    //     const existingItemIndex = cartItems.findIndex(item => item.name === dish.name);
-    //     const currencyRegex = /(?:\d|\.)+/;
-
-    //     const currencyValue = parseFloat(dish.price.match(currencyRegex)[0]);
-
-    //     if (existingItemIndex !== -1) {
-    //         const updatedCartItems = [...cartItems];
-    //         updatedCartItems[existingItemIndex].quantity += 1;
-
-    //         updatedCartItems[existingItemIndex].totalPrice = currencyValue * updatedCartItems[existingItemIndex].quantity;
-    //         setCartItems(updatedCartItems);
-    //     } else {
-    //         const newItem = { ...dish, quantity: 1, totalPrice: currencyValue };
-    //         setCartItems([...cartItems, newItem]);
-    //     }
-    // };
 
     const handleAddToCart = (e, dish) => {
         e.stopPropagation();
