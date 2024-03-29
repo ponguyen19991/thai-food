@@ -95,13 +95,13 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/contact-us"
+              to="/reviews"
               activeClassName="active"
-              className="contact-us"
+              className="reviews"
               onClick={showNavbar}
             >
-                <h3>ติดต่อเรา</h3>
-              {t("contact-us")}
+                <h3>รีวิว</h3>
+              {t("reviews")}
             </NavLink>
           </li>
           <li>

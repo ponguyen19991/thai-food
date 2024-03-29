@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Home from "./pages/Home"
 import Restaurants from "./pages/Restaurants"
 import Today from "./pages/Today"
-import Contact from "./pages/Contact"
+import Reviews from "./pages/Reviews"
 import About from "./pages/About"
 import Menu from "./pages/Menu"
 import AOS from 'aos';
@@ -71,7 +71,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/restaurants" element={<Restaurants />} />
         <Route path="/today" element={<Today />} />
-        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/reviews" element={<Reviews />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/menu" element={<Menu />} />
       </Routes>
