@@ -20,8 +20,13 @@ export default function Menu() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
+
     const [openAlert, setOpenAlert] = useState(false);
+    const [openAlertMaximum, setOpenAlertMaximum] = useState(false);
+
+
     const [cartCount, setCartCount] = useState(0);
+    const [addedItems, setAddedItems] = useState([]);
 
     const handleClickAlert = () => {
         setOpenAlert(true);
@@ -29,6 +34,14 @@ export default function Menu() {
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
+    };
+
+    const handleClickAlertMaximum = () => {
+        setOpenAlertMaximum(true);
+    };
+
+    const handleCloseAlertMaximum = () => {
+        setOpenAlertMaximum(false);
     };
     // const handleAddToCart = (e, dish) => {
     //     e.stopPropagation();
@@ -52,21 +65,26 @@ export default function Menu() {
     const handleAddToCart = (e, dish) => {
         e.stopPropagation();
         const existingItemIndex = cartItems.findIndex(item => item.name === dish.name);
-        if (existingItemIndex !== -1) {
-            const updatedCartItems = [...cartItems];
-            updatedCartItems[existingItemIndex].quantity += 1;
-            // Cập nhật giá cho mỗi món
-            updatedCartItems.forEach(item => {
-                item.totalPrice = item.price * item.quantity;
-            });
-            setCartItems(updatedCartItems);
+        if (existingItemIndex !== -1 && addedItems.includes(dish.name)) {
+            handleClickAlertMaximum()
         } else {
-            // Thêm món mới vào giỏ hàng
-            const newItem = { ...dish, quantity: 1, totalPrice: dish.price };
-            setCartItems([...cartItems, newItem]);
+            if (existingItemIndex !== -1) {
+                const updatedCartItems = [...cartItems];
+                updatedCartItems[existingItemIndex].quantity += 1;
+                updatedCartItems.forEach(item => {
+                    item.totalPrice = item.price * item.quantity;
+                });
+                setCartItems(updatedCartItems);
+                setAddedItems([...addedItems, dish.name]);
+            } else {
+                const newItem = { ...dish, quantity: 1, totalPrice: dish.price };
+                setCartItems([...cartItems, newItem]);
+                setAddedItems([...addedItems, dish.name]);
+            }
             setCartCount(cartCount + 1);
         }
     };
+
 
     const updateCartCount = (newCount) => {
         setCartCount(newCount);
@@ -307,6 +325,16 @@ export default function Menu() {
                     sx={{ width: '100%' }}
                 >
                     Food added successfully
+                </Alert>
+            </Snackbar>
+            <Snackbar open={openAlertMaximum} autoHideDuration={3000} onClose={handleCloseAlertMaximum}>
+                <Alert
+                    onClose={handleCloseAlertMaximum}
+                    severity="error"
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                >
+                    This food has been added!
                 </Alert>
             </Snackbar>
         </Box >
