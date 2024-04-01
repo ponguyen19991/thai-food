@@ -2,8 +2,8 @@
 @import '/src/styles/mixins/responsive.scss';
 
 .contentBanner {
-    font-family: "DM Serif Display", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 78px;
+    font-family: "DM Serif Display", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: 78px !important;
 }
