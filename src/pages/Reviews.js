@@ -74,7 +74,7 @@ export default function Reviews() {
                 <Box className='reviewer' mt={6}>
                     <Masonry columns={3} spacing={2}>
                         {reviewerReview.map((reviews, index) => (
-                            <Card key={index} sx={{ maxWidth: 365, backgroundColor: '#333333', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px' }}>
+                            <Card key={index} sx={{ maxWidth: 365, backgroundColor: '#333333', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px', '&:hover': { backgroundColor: 'rgba(51, 51, 51, 0.8)' }, cursor: 'pointer' }}>
                                 <CardContent sx={{ color: '#D3D0D3' }}>
                                     <Typography gutterBottom variant="h7" component="div" fontWeight={650}>
                                         {reviews.mainViewer}
