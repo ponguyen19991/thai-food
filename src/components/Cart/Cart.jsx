@@ -310,13 +310,13 @@ const Cart = (props) => {
                                             onChange={handleCardNumberChange}
                                         />
                                     </Stack>
-                                    <Stack spacing={1} mb={2}>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={6}>
+                                    <Stack spacing={1} justifyContent="space-between" mb={2}>
+                                        <Grid container>
+                                            <Grid item xs={5} mr={1}>
                                                 <label>Expiry date</label>
                                                 <TextField fullWidth id="outlined-basic" type="date" variant="outlined" placeholder='DD/MM/YY'/>
                                             </Grid>
-                                            <Grid item xs={6}>
+                                            <Grid item xs={5}>
                                                 <label>CVV</label>
                                                 <TextField fullWidth id="outlined-basic" variant="outlined" placeholder='X X X'/>
                                             </Grid>
